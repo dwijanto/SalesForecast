@@ -37,7 +37,7 @@ Public Class KAMGroupTWModel
                                        " left join sales.sfkamgrouptw kg on kg.kam = kam.username " &
                                        " left join sales.sfgroup g on g.id = kg.groupid  " &
                                        " left join sales.sftwgroupsd tsd on tsd.groupid = kg.groupid  " &
-                                       " where kam.username = '{0}' order by 1,3", criteria)
+                                       " where kam.username = '{0}' and kam.location = 2 order by 1,3", criteria)
 
             dataadapter.SelectCommand = myadapter.getCommandObject(sqlstr, conn)
             dataadapter.SelectCommand.CommandType = CommandType.Text
