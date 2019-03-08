@@ -1,0 +1,812 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{11C494BD-DA79-4D55-A0EB-43FF880CDD8C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>SalesForecast.My.MyApplication</StartupObject>
+    <RootNamespace>SalesForecast</RootNamespace>
+    <AssemblyName>SalesForecast</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>SalesForecast.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>SalesForecast.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SF.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="npgsql, Version=2.1.3.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\Npgsql\v4.0_2.1.3.0__5d8b90d52f46fda7\npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\ActiveRecord.vb" />
+    <Compile Include="Class\HKImportGroup.vb" />
+    <Compile Include="Class\HKImportMLA.vb" />
+    <Compile Include="Class\ImportKAMTarget.vb" />
+    <Compile Include="Class\ImportSalesForecastHK.vb" />
+    <Compile Include="Class\MSImportGroup.vb" />
+    <Compile Include="Class\PeriodRange.vb" />
+    <Compile Include="Class\ExportToExcelFile.vb" />
+    <Compile Include="Class\IActiveRecord.vb" />
+    <Compile Include="Class\IController.vb" />
+    <Compile Include="Class\IDBAdapter.vb" />
+    <Compile Include="Class\IModel.vb" />
+    <Compile Include="Class\IToolbarAction.vb" />
+    <Compile Include="Class\PostgreSQLDbAdapter.vb" />
+    <Compile Include="Class\RBAC\Assignment.vb" />
+    <Compile Include="Class\RBAC\BaseManager.vb" />
+    <Compile Include="Class\RBAC\DbManager.vb" />
+    <Compile Include="Class\RBAC\DialogItem.Designer.vb">
+      <DependentUpon>DialogItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Class\RBAC\DialogItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Class\RBAC\DialogUserInput.Designer.vb">
+      <DependentUpon>DialogUserInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Class\RBAC\DialogUserInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Class\RBAC\FormUserAssignment.Designer.vb">
+      <DependentUpon>FormUserAssignment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Class\RBAC\FormUserAssignment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Class\RBAC\IIdentity.vb" />
+    <Compile Include="Class\RBAC\IManager.vb" />
+    <Compile Include="Class\RBAC\Item.vb" />
+    <Compile Include="Class\RBAC\Permission.vb" />
+    <Compile Include="Class\RBAC\Role.vb" />
+    <Compile Include="Class\RBAC\Rule.vb" />
+    <Compile Include="Class\RBAC\User.vb" />
+    <Compile Include="Class\RBAC\UserAssignmentController.vb" />
+    <Compile Include="Class\ReportProperty.vb" />
+    <Compile Include="Class\SGImportCMMF.vb" />
+    <Compile Include="Class\SGImportGroup.vb" />
+    <Compile Include="Class\THImportGroup.vb" />
+    <Compile Include="Class\TWImportGroup.vb" />
+    <Compile Include="Controller\ALLKAMHK.vb" />
+    <Compile Include="Controller\ALLKAMMY.vb" />
+    <Compile Include="Controller\ALLKAMSG.vb" />
+    <Compile Include="Controller\ALLKAMTH.vb" />
+    <Compile Include="Controller\ALLKAMTW.vb" />
+    <Compile Include="Controller\APOHK.vb" />
+    <Compile Include="Controller\APOMY.vb" />
+    <Compile Include="Controller\APOSG.vb" />
+    <Compile Include="Controller\APOTH.vb" />
+    <Compile Include="Controller\APOTW.vb" />
+    <Compile Include="Controller\BrandController.vb" />
+    <Compile Include="Controller\CMMFController.vb" />
+    <Compile Include="Controller\CMMFKAMAssignmentController.vb" />
+    <Compile Include="Controller\CMMFMYController.vb" />
+    <Compile Include="Controller\CMMFMYExport.vb" />
+    <Compile Include="Controller\CMMFNSPController.vb" />
+    <Compile Include="Controller\CMMFNSPTWController.vb" />
+    <Compile Include="Controller\CMMFSG.vb" />
+    <Compile Include="Controller\CMMFSGController.vb" />
+    <Compile Include="Controller\CMMFTHController.vb" />
+    <Compile Include="Controller\CMMFTWController.vb" />
+    <Compile Include="Controller\FamilyController.vb" />
+    <Compile Include="Controller\ForecastGroupTemplateHK001.vb" />
+    <Compile Include="Controller\ForecastGroupTemplateHK.vb" />
+    <Compile Include="Controller\ForecastGroupTemplateMS.vb" />
+    <Compile Include="Controller\ForecastGroupTemplateSG.vb" />
+    <Compile Include="Controller\ForecastGroupTemplateTH.vb" />
+    <Compile Include="Controller\ForecastGroupTemplateTW.vb" />
+    <Compile Include="Controller\GrossSalesTargetTWController.vb" />
+    <Compile Include="Controller\GrossSalesTWController.vb" />
+    <Compile Include="Controller\GroupController.vb" />
+    <Compile Include="Controller\GroupSDController.vb" />
+    <Compile Include="Controller\HKParamController.vb" />
+    <Compile Include="Controller\ImportMSRAWDATA.vb" />
+    <Compile Include="Controller\KAMAssignmentController.vb" />
+    <Compile Include="Controller\KAMBudgetController.vb" />
+    <Compile Include="Controller\KAMController.vb" />
+    <Compile Include="Controller\KAMGroupMSController.vb" />
+    <Compile Include="Controller\KAMGroupSGController.vb" />
+    <Compile Include="Controller\KAMGroupTHController.vb" />
+    <Compile Include="Controller\KamGroupTWController.vb" />
+    <Compile Include="Controller\MLACardController.vb" />
+    <Compile Include="Controller\MLAController.vb" />
+    <Compile Include="Controller\MLATemplateHK.vb" />
+    <Compile Include="Controller\MLATemplateHKSD.vb" />
+    <Compile Include="Controller\MSBudgetController.vb" />
+    <Compile Include="Controller\MSParamController.vb" />
+    <Compile Include="Controller\ProductLineGPSController.vb" />
+    <Compile Include="Controller\SFGroupTXHKController.vb" />
+    <Compile Include="Controller\TBParamDetailController.vb" />
+    <Compile Include="Controller\TWParamController.vb" />
+    <Compile Include="Controller\UserController.vb" />
+    <Compile Include="FormMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMenu.Designer.vb">
+      <DependentUpon>FormMenu.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model\BrandModel.vb" />
+    <Compile Include="Model\CMMFKAMAssignmentModel.vb" />
+    <Compile Include="Model\CMMFModel.vb" />
+    <Compile Include="Model\CMMFMYModel.vb" />
+    <Compile Include="Model\CMMFNSPModel.vb" />
+    <Compile Include="Model\CMMFNSPTWModel.vb" />
+    <Compile Include="Model\CMMFSGModel.vb" />
+    <Compile Include="Model\CMMFTHModel.vb" />
+    <Compile Include="Model\CMMFTWModel.vb" />
+    <Compile Include="Model\FamilyModel.vb" />
+    <Compile Include="Model\GrossSalesTargetTWModel.vb" />
+    <Compile Include="Model\GroupModel.vb" />
+    <Compile Include="Model\GrossSalesTWModel.vb" />
+    <Compile Include="Model\GroupSDModel.vb" />
+    <Compile Include="Model\HKParamModel.vb" />
+    <Compile Include="Model\KAMAssignmentModel.vb" />
+    <Compile Include="Model\KAMBudgetModel.vb" />
+    <Compile Include="Model\KAMGroupMSModel.vb" />
+    <Compile Include="Model\KAMGroupSGModel.vb" />
+    <Compile Include="Model\KAMGroupTHModel.vb" />
+    <Compile Include="Model\KAMGroupTWModel.vb" />
+    <Compile Include="Model\KAMModel.vb" />
+    <Compile Include="Model\MLACardModel.vb" />
+    <Compile Include="Model\MLAModel.vb" />
+    <Compile Include="Model\MSBudgetModel.vb" />
+    <Compile Include="Model\MSParamModel.vb" />
+    <Compile Include="Model\ProductLineGPSModel.vb" />
+    <Compile Include="Model\SFGroupTXHKModel.vb" />
+    <Compile Include="Model\TBParamDetailModel.vb" />
+    <Compile Include="Model\TWParamModel.vb" />
+    <Compile Include="Model\UserModel.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="View\DialogCMMF.Designer.vb">
+      <DependentUpon>DialogCMMF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogCMMF.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogCMMFMY.Designer.vb">
+      <DependentUpon>DialogCMMFMY.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogCMMFMY.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogCMMFSG.Designer.vb">
+      <DependentUpon>DialogCMMFSG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogCMMFSG.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogCMMFTH.Designer.vb">
+      <DependentUpon>DialogCMMFTH.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogCMMFTH.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogCMMFTW.Designer.vb">
+      <DependentUpon>DialogCMMFTW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogCMMFTW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogFamily.Designer.vb">
+      <DependentUpon>DialogFamily.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogFamily.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogGrossSalesTargetTW.Designer.vb">
+      <DependentUpon>DialogGrossSalesTargetTW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogGrossSalesTargetTW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogGrossSalesTW.Designer.vb">
+      <DependentUpon>DialogGrossSalesTW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogGrossSalesTW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogHKParam.Designer.vb">
+      <DependentUpon>DialogHKParam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogHKParam.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogKAM.Designer.vb">
+      <DependentUpon>DialogKAM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogKAM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogKAMBudget.Designer.vb">
+      <DependentUpon>DialogKAMBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogKAMBudget.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogMLA.Designer.vb">
+      <DependentUpon>DialogMLA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogMLA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogSalesDeduction.Designer.vb">
+      <DependentUpon>DialogSalesDeduction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogSalesDeduction.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogSelectPeriod.Designer.vb">
+      <DependentUpon>DialogSelectPeriod.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogSelectPeriod.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogTBParamDetail.Designer.vb">
+      <DependentUpon>DialogTBParamDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogTBParamDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DialogTWParam.Designer.vb">
+      <DependentUpon>DialogTWParam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogTWParam.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormCMMF.Designer.vb">
+      <DependentUpon>FormCMMF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormCMMF.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormCMMFMY.Designer.vb">
+      <DependentUpon>FormCMMFMY.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormCMMFMY.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormCMMFSG.Designer.vb">
+      <DependentUpon>FormCMMFSG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormCMMFSG.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormCMMFTH.Designer.vb">
+      <DependentUpon>FormCMMFTH.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormCMMFTH.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormCMMFTW.Designer.vb">
+      <DependentUpon>FormCMMFTW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormCMMFTW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormFamily.Designer.vb">
+      <DependentUpon>FormFamily.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormFamily.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormForecastGroupHK.Designer.vb">
+      <DependentUpon>FormForecastGroupHK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormForecastGroupHK.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormForecastGroupMS.Designer.vb">
+      <DependentUpon>FormForecastGroupMS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormForecastGroupMS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormForecastGroupSG.Designer.vb">
+      <DependentUpon>FormForecastGroupSG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormForecastGroupSG.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormForecastGroupTH.Designer.vb">
+      <DependentUpon>FormForecastGroupTH.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormForecastGroupTH.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormForecastGroupTW.Designer.vb">
+      <DependentUpon>FormForecastGroupTW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormForecastGroupTW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormGrossSalesBudgetorTarget.Designer.vb">
+      <DependentUpon>FormGrossSalesBudgetorTarget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormGrossSalesBudgetorTarget.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormGrossSalesTW.Designer.vb">
+      <DependentUpon>FormGrossSalesTW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormGrossSalesTW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormHelper.Designer.vb">
+      <DependentUpon>FormHelper.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormHelper.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormHKALLKAM.Designer.vb">
+      <DependentUpon>FormHKALLKAM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormHKALLKAM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormHKALLKAMTarget.Designer.vb">
+      <DependentUpon>FormHKALLKAMTarget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormHKALLKAMTarget.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormHKAPO.Designer.vb">
+      <DependentUpon>FormHKAPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormHKAPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormHKImport.Designer.vb">
+      <DependentUpon>FormHKImport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormHKImport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormImportRAWDATAMS.Designer.vb">
+      <DependentUpon>FormImportRAWDATAMS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormImportRAWDATAMS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormKAM.Designer.vb">
+      <DependentUpon>FormKAM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormKAM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormKAMTarget.Designer.vb">
+      <DependentUpon>FormKAMTarget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormKAMTarget.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormKAMTargetTW.Designer.vb">
+      <DependentUpon>FormKAMTargetTW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormKAMTargetTW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormMLA.Designer.vb">
+      <DependentUpon>FormMLA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormMLA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormMLATemplateHK.Designer.vb">
+      <DependentUpon>FormMLATemplateHK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormMLATemplateHK.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormMSImport.Designer.vb">
+      <DependentUpon>FormMSImport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormMSImport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormMYALLKAM.Designer.vb">
+      <DependentUpon>FormMYALLKAM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormMYALLKAM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormMYAPO.Designer.vb">
+      <DependentUpon>FormMYAPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormMYAPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormMYBudget.Designer.vb">
+      <DependentUpon>FormMYBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormMYBudget.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormSalesDeductionTW.Designer.vb">
+      <DependentUpon>FormSalesDeductionTW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormSalesDeductionTW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormSGALLKAM.Designer.vb">
+      <DependentUpon>FormSGALLKAM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormSGALLKAM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormSGAPO.Designer.vb">
+      <DependentUpon>FormSGAPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormSGAPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormSGImport.Designer.vb">
+      <DependentUpon>FormSGImport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormSGImport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormTHALLKAM.Designer.vb">
+      <DependentUpon>FormTHALLKAM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormTHALLKAM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormTHAPO.Designer.vb">
+      <DependentUpon>FormTHAPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormTHAPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormTHImport.Designer.vb">
+      <DependentUpon>FormTHImport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormTHImport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormTousRawData.Designer.vb">
+      <DependentUpon>FormTousRawData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormTousRawData.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormTWALLKAM.Designer.vb">
+      <DependentUpon>FormTWALLKAM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormTWALLKAM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormTWAPO.Designer.vb">
+      <DependentUpon>FormTWAPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormTWAPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormTWImport.Designer.vb">
+      <DependentUpon>FormTWImport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormTWImport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormUser.Designer.vb">
+      <DependentUpon>FormUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Class\RBAC\DialogItem.resx">
+      <DependentUpon>DialogItem.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Class\RBAC\DialogUserInput.resx">
+      <DependentUpon>DialogUserInput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Class\RBAC\FormUserAssignment.resx">
+      <DependentUpon>FormUserAssignment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMenu.resx">
+      <DependentUpon>FormMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogCMMF.resx">
+      <DependentUpon>DialogCMMF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogCMMFMY.resx">
+      <DependentUpon>DialogCMMFMY.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogCMMFSG.resx">
+      <DependentUpon>DialogCMMFSG.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogCMMFTH.resx">
+      <DependentUpon>DialogCMMFTH.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogCMMFTW.resx">
+      <DependentUpon>DialogCMMFTW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogFamily.resx">
+      <DependentUpon>DialogFamily.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogGrossSalesTargetTW.resx">
+      <DependentUpon>DialogGrossSalesTargetTW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogGrossSalesTW.resx">
+      <DependentUpon>DialogGrossSalesTW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogHKParam.resx">
+      <DependentUpon>DialogHKParam.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogKAM.resx">
+      <DependentUpon>DialogKAM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogKAMBudget.resx">
+      <DependentUpon>DialogKAMBudget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogMLA.resx">
+      <DependentUpon>DialogMLA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogSalesDeduction.resx">
+      <DependentUpon>DialogSalesDeduction.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogSelectPeriod.resx">
+      <DependentUpon>DialogSelectPeriod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogTBParamDetail.resx">
+      <DependentUpon>DialogTBParamDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DialogTWParam.resx">
+      <DependentUpon>DialogTWParam.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormCMMF.resx">
+      <DependentUpon>FormCMMF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormCMMFMY.resx">
+      <DependentUpon>FormCMMFMY.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormCMMFSG.resx">
+      <DependentUpon>FormCMMFSG.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormCMMFTH.resx">
+      <DependentUpon>FormCMMFTH.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormCMMFTW.resx">
+      <DependentUpon>FormCMMFTW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormFamily.resx">
+      <DependentUpon>FormFamily.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormForecastGroupHK.resx">
+      <DependentUpon>FormForecastGroupHK.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormForecastGroupMS.resx">
+      <DependentUpon>FormForecastGroupMS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormForecastGroupSG.resx">
+      <DependentUpon>FormForecastGroupSG.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormForecastGroupTH.resx">
+      <DependentUpon>FormForecastGroupTH.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormForecastGroupTW.resx">
+      <DependentUpon>FormForecastGroupTW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormGrossSalesBudgetorTarget.resx">
+      <DependentUpon>FormGrossSalesBudgetorTarget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormGrossSalesTW.resx">
+      <DependentUpon>FormGrossSalesTW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormHelper.resx">
+      <DependentUpon>FormHelper.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormHKALLKAM.resx">
+      <DependentUpon>FormHKALLKAM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormHKALLKAMTarget.resx">
+      <DependentUpon>FormHKALLKAMTarget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormHKAPO.resx">
+      <DependentUpon>FormHKAPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormHKImport.resx">
+      <DependentUpon>FormHKImport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormImportRAWDATAMS.resx">
+      <DependentUpon>FormImportRAWDATAMS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormKAM.resx">
+      <DependentUpon>FormKAM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormKAMTarget.resx">
+      <DependentUpon>FormKAMTarget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormKAMTargetTW.resx">
+      <DependentUpon>FormKAMTargetTW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormMLA.resx">
+      <DependentUpon>FormMLA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormMLATemplateHK.resx">
+      <DependentUpon>FormMLATemplateHK.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormMSImport.resx">
+      <DependentUpon>FormMSImport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormMYALLKAM.resx">
+      <DependentUpon>FormMYALLKAM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormMYAPO.resx">
+      <DependentUpon>FormMYAPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormMYBudget.resx">
+      <DependentUpon>FormMYBudget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormSalesDeductionTW.resx">
+      <DependentUpon>FormSalesDeductionTW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormSGALLKAM.resx">
+      <DependentUpon>FormSGALLKAM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormSGAPO.resx">
+      <DependentUpon>FormSGAPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormSGImport.resx">
+      <DependentUpon>FormSGImport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormTHALLKAM.resx">
+      <DependentUpon>FormTHALLKAM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormTHAPO.resx">
+      <DependentUpon>FormTHAPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormTHImport.resx">
+      <DependentUpon>FormTHImport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormTousRawData.resx">
+      <DependentUpon>FormTousRawData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormTWALLKAM.resx">
+      <DependentUpon>FormTWALLKAM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormTWAPO.resx">
+      <DependentUpon>FormTWAPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormTWImport.resx">
+      <DependentUpon>FormTWImport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormUser.resx">
+      <DependentUpon>FormUser.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SF.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
