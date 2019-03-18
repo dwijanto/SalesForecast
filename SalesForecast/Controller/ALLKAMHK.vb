@@ -7,7 +7,6 @@ Public Class ALLKAMHK
     Dim HKReportProperty1 As HKReportProperty = HKReportProperty.getInstance
 
     Public Sub Generate(myForm As Object, e As ALLKAMEventArgs)
-
         Dim sqlstr As String = String.Empty
 
         Dim mysaveform As New SaveFileDialog
@@ -67,9 +66,10 @@ Public Class ALLKAMHK
                    " left join sales.sfproductlinegps gps on gps.productlinegpsid = c.productlinegpsid" &
                    " left join sales.sffamily f on f.familyid = c.familyid" &
                    " {0}) union all" &
-                   " (select c.cmmf,c.origin,c.brand,c.reference,c.description,c.productsegmentation,gps.productlinegpsname as sbu,to_char(f.familyid,'FM000'),f.familyname,f.familylv2,f.productlinedesc,c.activedate,sales.get_producttype(c.productlinegpsid,c.brand) as producttype,tx.txdate,null::character varying as kam,tx.groupname,null::character varying as customer,tx.salesforecast,nsp.nsp1,nsp.nsp2,tx.salesforecast * nsp.nsp1 as netsalesusd,tx.salesforecast * nsp.nsp2 as netsaleshkd ,null::bigint" &
+                   " (select c.cmmf,c.origin,c.brand,c.reference,c.description,c.productsegmentation,gps.productlinegpsname as sbu,to_char(f.familyid,'FM000'),f.familyname,f.familylv2,f.productlinedesc,c.activedate,sales.get_producttype(c.productlinegpsid,c.brand) as producttype,tx.txdate,u.username::character varying as kam,tx.groupname,null::character varying as customer,tx.salesforecast,nsp.nsp1,nsp.nsp2,tx.salesforecast * nsp.nsp1 as netsalesusd,tx.salesforecast * nsp.nsp2 as netsaleshkd ,null::bigint" &
                    " from sales.sfcmmf c" &
                    " left join sales.sfgrouptxhk tx on c.cmmf = tx.cmmf " &
+                   " left join sales._user u on u.id = tx.userid" &
                    " left join sales.sfcmmfnsp nsp on nsp.cmmf = c.cmmf" &
                    " left join sales.sfproductlinegps gps on gps.productlinegpsid = c.productlinegpsid" &
                    " left join sales.sffamily f on f.familyid = c.familyid {1} )", criteria1, criteria2)
