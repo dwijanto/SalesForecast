@@ -162,29 +162,29 @@ Public Class MLATemplateHKSD
             osheet.Cells(12, DataStart + i).Interior.TintAndShade = 0.399975585192419
 
             'SubTotal Net
-            osheet.Cells(6, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(R{2}C{0}:R{1}C{0},R{2}C:R{1}C)", 9, e.lastRow - 2, RowStartData + 1)
+            osheet.Cells(6, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(R{2}C{0}:R{1}C{0},R{2}C:R{1}C)", 9, e.lastRow, RowStartData + 1)
             osheet.Cells(6, 10 + i).font.bold = True
             osheet.Cells(6, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(6, 10 + i).Interior.TintAndShade = 0.399975585192419
 
             'Net SDA
-            osheet.Cells(1, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""SDA""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow - 2, 9, 1, RowStartData + 1)
+            osheet.Cells(1, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""SDA""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
             osheet.Cells(1, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(1, 10 + i).Interior.TintAndShade = 0.599993896298105
             'Net SDA WMF
-            osheet.Cells(2, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""SDA - WMF""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow - 2, 9, 1, RowStartData + 1)
+            osheet.Cells(2, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""SDA - WMF""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
             osheet.Cells(2, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(2, 10 + i).Interior.TintAndShade = 0.599993896298105
             'Net CKW TEFAL
-            osheet.Cells(3, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - Tefal""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow - 2, 9, 1, RowStartData + 1)
+            osheet.Cells(3, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - Tefal""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
             osheet.Cells(3, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(3, 10 + i).Interior.TintAndShade = 0.599993896298105
             'Net CKW LAGO
-            osheet.Cells(4, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - Lago""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow - 2, 9, 1, RowStartData + 1)
+            osheet.Cells(4, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - Lago""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
             osheet.Cells(4, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(4, 10 + i).Interior.TintAndShade = 0.599993896298105
             'Net CKW WMF
-            osheet.Cells(5, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - WMF""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow - 2, 9, 1, RowStartData + 1)
+            osheet.Cells(5, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - WMF""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
             osheet.Cells(5, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(5, 10 + i).Interior.TintAndShade = 0.599993896298105
         Next
