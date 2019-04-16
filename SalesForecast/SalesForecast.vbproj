@@ -429,6 +429,12 @@
     <Compile Include="View\FormHKAPO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="View\FormHKAPOPrice.Designer.vb">
+      <DependentUpon>FormHKAPOPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormHKAPOPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\FormHKImport.Designer.vb">
       <DependentUpon>FormHKImport.vb</DependentUpon>
     </Compile>
@@ -686,6 +692,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormHKAPO.resx">
       <DependentUpon>FormHKAPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormHKAPOPrice.resx">
+      <DependentUpon>FormHKAPOPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormHKImport.resx">
       <DependentUpon>FormHKImport.vb</DependentUpon>

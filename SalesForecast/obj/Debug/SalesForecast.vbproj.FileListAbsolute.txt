@@ -140,3 +140,4 @@ C:\Users\dlie\Documents\GitHub\SalesForecast\SalesForecast\obj\Debug\SalesForeca
 C:\Users\dlie\Documents\GitHub\SalesForecast\SalesForecast\obj\Debug\SalesForecast.FormUser.resources
 C:\Users\dlie\Documents\GitHub\SalesForecast\SalesForecast\obj\Debug\SalesForecast.vbproj.GenerateResource.Cache
 C:\Users\dlie\Documents\GitHub\SalesForecast\SalesForecast\obj\Debug\SalesForecast.exe
+C:\Users\dlie\Documents\GitHub\SalesForecast\SalesForecast\obj\Debug\SalesForecast.FormHKAPOPrice.resources

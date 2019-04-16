@@ -87,6 +87,7 @@
         ExtractForecastGroupTemplateToolStripMenuItem.Visible = User.can("View Forecast Group HK")
         ImportTemplateToolStripMenuItem.Visible = User.can("View Import HK")
         ExportAPOToolStripMenuItem.Visible = User.can("View APO HK")
+        ExportAPOHKPriceToolStripMenuItem.Visible = User.can("View APO HK")
         ExportForecastGroupTWToolStripMenuItem.Visible = User.can("View Forecast Group TW")
         ImportSalesForecastTWToolStripMenuItem.Visible = User.can("View Import TW")
         ExportAPOTWToolStripMenuItem.Visible = User.can("View APO TW")
@@ -395,5 +396,10 @@
     Private Sub FamilyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FamilyToolStripMenuItem.Click
         Dim myform = New FormFamily
         myform.Show()
+    End Sub
+
+    Private Sub ExportAPOHKPriceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAPOHKPriceToolStripMenuItem.Click
+        Dim myform = New FormHKAPOPrice
+        myform.ShowDialog()
     End Sub
 End Class

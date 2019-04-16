@@ -64,6 +64,7 @@ Partial Class FormMenu
         Me.GrossSalesBudgetTWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExRateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RawDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FamilyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HKALLKAMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TWALLKAMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -73,7 +74,7 @@ Partial Class FormMenu
         Me.THALLKAMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UserGuideToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FamilyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportAPOHKPriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -96,7 +97,7 @@ Partial Class FormMenu
         '
         'ActionToolStripMenuItem
         '
-        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExtractTemplateToolStripMenuItem, Me.ExtractForecastGroupTemplateToolStripMenuItem, Me.ImportTemplateToolStripMenuItem, Me.ExportAPOToolStripMenuItem, Me.ExportForecastGroupTWToolStripMenuItem, Me.ImportSalesForecastTWToolStripMenuItem, Me.ExportAPOTWToolStripMenuItem, Me.ExportMSTemplateToolStripMenuItem, Me.ImportSalesForecastMSToolStripMenuItem, Me.ImportFromRAWDATAMYToolStripMenuItem, Me.ExportAPOMSToolStripMenuItem, Me.ExportSGTemplateToolStripMenuItem, Me.ImportSalesForecastSGToolStripMenuItem, Me.ExportAPOSGToolStripMenuItem, Me.ExportTHTemplateToolStripMenuItem, Me.ImportSalesForecastTHToolStripMenuItem, Me.ExportAPOTHToolStripMenuItem})
+        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExtractTemplateToolStripMenuItem, Me.ExtractForecastGroupTemplateToolStripMenuItem, Me.ImportTemplateToolStripMenuItem, Me.ExportAPOToolStripMenuItem, Me.ExportAPOHKPriceToolStripMenuItem, Me.ExportForecastGroupTWToolStripMenuItem, Me.ImportSalesForecastTWToolStripMenuItem, Me.ExportAPOTWToolStripMenuItem, Me.ExportMSTemplateToolStripMenuItem, Me.ImportSalesForecastMSToolStripMenuItem, Me.ImportFromRAWDATAMYToolStripMenuItem, Me.ExportAPOMSToolStripMenuItem, Me.ExportSGTemplateToolStripMenuItem, Me.ImportSalesForecastSGToolStripMenuItem, Me.ExportAPOSGToolStripMenuItem, Me.ExportTHTemplateToolStripMenuItem, Me.ImportSalesForecastTHToolStripMenuItem, Me.ExportAPOTHToolStripMenuItem})
         Me.ActionToolStripMenuItem.Name = "ActionToolStripMenuItem"
         Me.ActionToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
         Me.ActionToolStripMenuItem.Text = "Action"
@@ -341,6 +342,12 @@ Partial Class FormMenu
         Me.RawDataToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
         Me.RawDataToolStripMenuItem.Text = "Raw Data"
         '
+        'FamilyToolStripMenuItem
+        '
+        Me.FamilyToolStripMenuItem.Name = "FamilyToolStripMenuItem"
+        Me.FamilyToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.FamilyToolStripMenuItem.Text = "Family"
+        '
         'RToolStripMenuItem
         '
         Me.RToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HKALLKAMToolStripMenuItem, Me.TWALLKAMToolStripMenuItem, Me.MYALLKAMToolStripMenuItem, Me.SGALLKAMToolStripMenuItem, Me.HKALLKAMTARGETToolStripMenuItem, Me.THALLKAMToolStripMenuItem})
@@ -397,11 +404,11 @@ Partial Class FormMenu
         Me.UserGuideToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.UserGuideToolStripMenuItem.Text = "User Guide"
         '
-        'FamilyToolStripMenuItem
+        'ExportAPOHKPriceToolStripMenuItem
         '
-        Me.FamilyToolStripMenuItem.Name = "FamilyToolStripMenuItem"
-        Me.FamilyToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
-        Me.FamilyToolStripMenuItem.Text = "Family"
+        Me.ExportAPOHKPriceToolStripMenuItem.Name = "ExportAPOHKPriceToolStripMenuItem"
+        Me.ExportAPOHKPriceToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportAPOHKPriceToolStripMenuItem.Text = "Export APO Price HK"
         '
         'FormMenu
         '
@@ -470,5 +477,6 @@ Partial Class FormMenu
     Friend WithEvents THALLKAMToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ImportFromRAWDATAMYToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FamilyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ExportAPOHKPriceToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
