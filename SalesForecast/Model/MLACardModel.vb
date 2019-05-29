@@ -21,7 +21,7 @@ Public Class MLACardModel
 
     Public ReadOnly Property FilterField
         Get
-            Return "[mla] like '*{0}*' or [cardname] like '*{0}*''"
+            Return "[mla] like '*{0}*' or [cardname] like '*{0}*'"
         End Get
     End Property
 
@@ -59,7 +59,52 @@ Public Class MLACardModel
     End Function
 
     Public Function save(ByVal obj As Object, ByVal mye As ContentBaseEventArgs) As Boolean Implements IModel.save        
-        Return Nothing
+        Dim dataadapter As NpgsqlDataAdapter = myadapter.getDbDataAdapter
+        Dim myret As Boolean = False
+        AddHandler dataadapter.RowUpdated, AddressOf myadapter.onRowInsertUpdate
+        Dim mytransaction As Npgsql.NpgsqlTransaction
+        Using conn As Object = myadapter.getConnection
+            conn.Open()
+            mytransaction = conn.BeginTransaction
+            'Update
+            Dim sqlstr = "sales.sp_updatesfmlacardname"
+            dataadapter.UpdateCommand = myadapter.getCommandObject(sqlstr, conn)
+            dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Bigint, 0, "id").SourceVersion = DataRowVersion.Original
+            dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Varchar, 0, "mla").SourceVersion = DataRowVersion.Current
+            dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Varchar, 0, "cardname").SourceVersion = DataRowVersion.Current
+            dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Numeric, 0, "sdasd").SourceVersion = DataRowVersion.Current
+            dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Numeric, 0, "tefalsd").SourceVersion = DataRowVersion.Current
+            dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Numeric, 0, "lagosd").SourceVersion = DataRowVersion.Current
+            dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Numeric, 0, "wmfsd").SourceVersion = DataRowVersion.Current
+
+            dataadapter.UpdateCommand.CommandType = CommandType.StoredProcedure
+
+            sqlstr = "sales.sp_insertsfmlacardname"
+            dataadapter.InsertCommand = myadapter.getCommandObject(sqlstr, conn)
+            dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Varchar, 0, "mla").SourceVersion = DataRowVersion.Current
+            dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Varchar, 0, "cardname").SourceVersion = DataRowVersion.Current
+            dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Numeric, 0, "sdasd").SourceVersion = DataRowVersion.Current
+            dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Numeric, 0, "tefalsd").SourceVersion = DataRowVersion.Current
+            dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Numeric, 0, "lagosd").SourceVersion = DataRowVersion.Current
+            dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Numeric, 0, "wmfsd").SourceVersion = DataRowVersion.Current
+            dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Bigint, 0, "id").Direction = ParameterDirection.InputOutput
+            dataadapter.InsertCommand.CommandType = CommandType.StoredProcedure
+
+            sqlstr = "sales.sp_deletesfmlacardname"
+            dataadapter.DeleteCommand = myadapter.getCommandObject(sqlstr, conn)
+            dataadapter.DeleteCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Varchar, 0, "id").Direction = ParameterDirection.Input
+            dataadapter.DeleteCommand.CommandType = CommandType.StoredProcedure
+
+            dataadapter.InsertCommand.Transaction = mytransaction
+            dataadapter.UpdateCommand.Transaction = mytransaction
+            dataadapter.DeleteCommand.Transaction = mytransaction
+
+            mye.ra = dataadapter.Update(mye.dataset.Tables(TableName))
+
+            mytransaction.Commit()
+            myret = True
+        End Using
+        Return myret
     End Function
 
 End Class

@@ -102,6 +102,8 @@
         THALLKAMToolStripMenuItem.Visible = User.can("View Report ALL TH")
 
         MLAToolStripMenuItem.Visible = User.can("View MLA HK")
+        MLASDHKToolStripMenuItem.Visible = User.can("View KAM Target HK") 'Supervisor HK
+
         SalesDeductionToolStripMenuItem.Visible = User.can("View Sales Deduction")
         GrossSalesTWToolStripMenuItem.Visible = User.can("View Gross Sales TW")
         GrossSalesBudgetTWToolStripMenuItem.Visible = User.can("View Gross Sales Target TW")
@@ -400,6 +402,11 @@
 
     Private Sub ExportAPOHKPriceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAPOHKPriceToolStripMenuItem.Click
         Dim myform = New FormHKAPOPrice
+        myform.ShowDialog()
+    End Sub
+
+    Private Sub MLASDHKToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MLASDHKToolStripMenuItem.Click
+        Dim myform = New FormMLACardNameSD
         myform.ShowDialog()
     End Sub
 End Class
