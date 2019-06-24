@@ -87,11 +87,11 @@ Public Class FormCMMF
             Dim ProductLineGPSBS = ProductLineGPSController1.GetBindingSource
             Dim FamilyBS = FamilyController1.GetBindingSource
             Dim FamilyHelperBS = FamilyController1.GetBindingSource
+            Dim CatBrandBS = BrandController1.GetCatBrandBindingSource
 
 
 
-
-            Dim myform = New DialogCMMF(drv, NSPdrv, BrandBS, ProductLineGPSBS, FamilyBS, FamilyHelperBS)
+            Dim myform = New DialogCMMF(drv, NSPdrv, BrandBS, ProductLineGPSBS, FamilyBS, FamilyHelperBS, CatBrandBS)
             myform.ShowDialog()
         End If
 

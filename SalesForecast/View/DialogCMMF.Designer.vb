@@ -58,6 +58,8 @@ Partial Class DialogCMMF
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
         Me.TextBox7 = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.ComboBox7 = New System.Windows.Forms.ComboBox()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -364,6 +366,23 @@ Partial Class DialogCMMF
         Me.Label15.TabIndex = 54
         Me.Label15.Text = "Remarks"
         '
+        'ComboBox7
+        '
+        Me.ComboBox7.FormattingEnabled = True
+        Me.ComboBox7.Location = New System.Drawing.Point(167, 464)
+        Me.ComboBox7.Name = "ComboBox7"
+        Me.ComboBox7.Size = New System.Drawing.Size(240, 21)
+        Me.ComboBox7.TabIndex = 55
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(106, 467)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(56, 13)
+        Me.Label16.TabIndex = 56
+        Me.Label16.Text = "Cat/Brand"
+        '
         'DialogCMMF
         '
         Me.AcceptButton = Me.OK_Button
@@ -371,6 +390,8 @@ Partial Class DialogCMMF
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(690, 550)
+        Me.Controls.Add(Me.Label16)
+        Me.Controls.Add(Me.ComboBox7)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.TextBox7)
         Me.Controls.Add(Me.Label14)
@@ -451,5 +472,7 @@ Partial Class DialogCMMF
     Friend WithEvents TextBox7 As System.Windows.Forms.TextBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents DateTimePicker2 As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox7 As System.Windows.Forms.ComboBox
 
 End Class

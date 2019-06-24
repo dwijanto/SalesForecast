@@ -8,9 +8,10 @@ Public Class DialogCMMF
     Dim ProductLineGPSBS As BindingSource
     Dim FamilyBS As BindingSource
     Dim FamilyHelperBS As BindingSource
+    Dim CatBrandBS As BindingSource
     Public Shared Event RefreshDataGridView(ByVal obj As Object, ByVal e As EventArgs)
 
-    Public Sub New(ByVal drv As DataRowView, ByVal Pricedrv As DataRowView, ByVal BrandBS As BindingSource, ByVal ProductLineGPSBS As BindingSource, ByVal FamilyBS As BindingSource, ByVal FamilyHelperBS As BindingSource)
+    Public Sub New(ByVal drv As DataRowView, ByVal Pricedrv As DataRowView, ByVal BrandBS As BindingSource, ByVal ProductLineGPSBS As BindingSource, ByVal FamilyBS As BindingSource, ByVal FamilyHelperBS As BindingSource, ByVal CatBrandBS As BindingSource)
         InitializeComponent()
         Me.DRV = drv
         Me.PriceDRV = Pricedrv
@@ -19,6 +20,9 @@ Public Class DialogCMMF
         Me.ProductLineGPSBS = ProductLineGPSBS
         Me.FamilyBS = FamilyBS
         Me.FamilyHelperBS = FamilyHelperBS
+        Me.CatBrandBS = CatBrandBS
+
+        initData()
     End Sub
 
     Public Overloads Function Validate() As Boolean
@@ -55,6 +59,16 @@ Public Class DialogCMMF
 
         PriceDRV.Item("cmmf") = DRV.Item("cmmf")
 
+        Dim cbdrv7 As DataRowView = ComboBox7.SelectedItem
+        If Not IsNothing(cbdrv7) Then
+            DRV.Item("catbrandname") = cbdrv7.Row.Item("catbrandname")
+            If DRV.Item("catbrandid") = 0 Then
+                DRV.Item("catbrandid") = DBNull.Value
+                DRV.Item("catbrandname") = String.Empty
+            End If
+        End If
+
+
 
         Return myret
     End Function
@@ -90,6 +104,11 @@ Public Class DialogCMMF
         ComboBox5.DisplayMember = "familydesc"
         ComboBox5.ValueMember = "familyid"
 
+        ComboBox7.DataSource = CatBrandBS
+        ComboBox7.DisplayMember = "catbrandname"
+        ComboBox7.ValueMember = "id"
+
+
         ComboBox1.DataBindings.Clear()
 
         ComboBox2.DataBindings.Clear()
@@ -98,6 +117,13 @@ Public Class DialogCMMF
         ComboBox4.DataBindings.Clear()
         ComboBox5.DataBindings.Clear()
         ComboBox6.DataBindings.Clear()
+        ComboBox7.DataBindings.Clear()
+
+
+        
+
+       
+
         TextBox1.DataBindings.Clear()
 
         TextBox3.DataBindings.Clear()
@@ -107,6 +133,7 @@ Public Class DialogCMMF
         TextBox2.DataBindings.Clear()
         TextBox6.DataBindings.Clear()
         TextBox7.DataBindings.Clear()
+
         DateTimePicker1.DataBindings.Clear()
         DateTimePicker2.DataBindings.Clear()
 
@@ -116,6 +143,8 @@ Public Class DialogCMMF
         ComboBox4.DataBindings.Add(New Binding("SelectedValue", DRV, "productlinegpsid", True, DataSourceUpdateMode.OnPropertyChanged, ""))
         ComboBox5.DataBindings.Add(New Binding("SelectedValue", DRV, "familyid", True, DataSourceUpdateMode.OnPropertyChanged, ""))
         ComboBox6.DataBindings.Add(New Binding("Text", DRV, "origin", True, DataSourceUpdateMode.OnPropertyChanged, ""))
+        ComboBox7.DataBindings.Add(New Binding("SelectedValue", DRV, "catbrandid", True, DataSourceUpdateMode.OnPropertyChanged, ""))
+
 
         TextBox1.DataBindings.Add(New Binding("Text", DRV, "cmmf", True, DataSourceUpdateMode.OnPropertyChanged, ""))
         TextBox3.DataBindings.Add(New Binding("Text", DRV, "reference", True, DataSourceUpdateMode.OnPropertyChanged, ""))
@@ -127,14 +156,14 @@ Public Class DialogCMMF
         DateTimePicker1.DataBindings.Add(New Binding("Text", DRV, "activedate", True, DataSourceUpdateMode.OnPropertyChanged, ""))
         DateTimePicker2.DataBindings.Add(New Binding("Text", DRV, "launchingmonth", True, DataSourceUpdateMode.OnPropertyChanged, ""))
         TextBox7.DataBindings.Add(New Binding("Text", DRV, "remarks", True, DataSourceUpdateMode.OnPropertyChanged, ""))
-        If DRV.Row.RowState = DataRowState.Detached Then
-            'If IsDBNull(DRV.Item(0)) Then
+        If DRV.Row.RowState = DataRowState.Detached Then            
             ComboBox1.SelectedIndex = -1
             ComboBox2.SelectedIndex = -1
             ComboBox3.SelectedIndex = -1
             ComboBox4.SelectedIndex = -1
             ComboBox5.SelectedIndex = -1
             ComboBox6.SelectedIndex = -1
+            ComboBox7.SelectedIndex = -1
         End If
     End Sub
 
@@ -156,7 +185,7 @@ Public Class DialogCMMF
         End If
     End Sub
     Private Sub Dialog1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        initData()
+
     End Sub
 
 

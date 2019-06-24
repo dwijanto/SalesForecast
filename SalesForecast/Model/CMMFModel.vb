@@ -30,7 +30,7 @@ Public Class CMMFModel
         Dim myret As Boolean = False
         Using conn As Object = myadapter.getConnection
             conn.Open()
-            Dim sqlstr = String.Format("select u.cmmf::text,u.origin,u.sbu,u.brand,u.reference,u.productdesc,u.description,u.companystatus,u.status,u.productsegmentation,u.productlinegpsid,u.familyid,u.activedate,u.launchingmonth,u.remarks,to_char(f.familyid,'FM000') || ' - ' || f.familyname as familyname,f.familylv2,sbu.productlinegpsname,p.nsp1,p.nsp2 from {0} u left join sales.sffamily f on f.familyid = u.familyid left join sales.sfproductlinegps sbu on sbu.productlinegpsid = u.productlinegpsid left join sales.sfcmmfnsp p on p.cmmf = u.cmmf  order by {1}", TableName, SortField)
+            Dim sqlstr = String.Format("select u.cmmf::text,u.origin,u.sbu,u.brand,u.reference,u.productdesc,u.description,u.companystatus,u.status,u.productsegmentation,u.productlinegpsid,u.familyid,u.activedate,u.launchingmonth,u.remarks,to_char(f.familyid,'FM000') || ' - ' || f.familyname as familyname,f.familylv2,sbu.productlinegpsname,p.nsp1,p.nsp2,u.catbrandid,cbv.catbrandname from {0} u left join sales.sffamily f on f.familyid = u.familyid left join sales.sfproductlinegps sbu on sbu.productlinegpsid = u.productlinegpsid left join sales.sfcmmfnsp p on p.cmmf = u.cmmf left join sales.catbrandview cbv on cbv.id = u.catbrandid  order by {1}", TableName, SortField)
             dataadapter.SelectCommand = myadapter.getCommandObject(sqlstr, conn)
             dataadapter.SelectCommand.CommandType = CommandType.Text
             dataadapter.Fill(DS, TableName)
@@ -64,6 +64,7 @@ Public Class CMMFModel
             dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Date, 0, "activedate").SourceVersion = DataRowVersion.Current
             dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Date, 0, "launchingmonth").SourceVersion = DataRowVersion.Current
             dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Varchar, 0, "remarks").SourceVersion = DataRowVersion.Current
+            dataadapter.UpdateCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Integer, 0, "catbrandid").SourceVersion = DataRowVersion.Current
             dataadapter.UpdateCommand.CommandType = CommandType.StoredProcedure
 
             sqlstr = "sales.sp_insertsfcmmf"
@@ -81,6 +82,7 @@ Public Class CMMFModel
             dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Date, 0, "activedate").SourceVersion = DataRowVersion.Current
             dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Date, 0, "launchingmonth").SourceVersion = DataRowVersion.Current
             dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Varchar, 0, "remarks").SourceVersion = DataRowVersion.Current
+            dataadapter.InsertCommand.Parameters.Add("", NpgsqlTypes.NpgsqlDbType.Integer, 0, "catbrandid").SourceVersion = DataRowVersion.Current
             dataadapter.InsertCommand.CommandType = CommandType.StoredProcedure
 
             sqlstr = "sales.sp_deletesfcmmf"
