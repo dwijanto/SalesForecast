@@ -58,7 +58,7 @@ Public Class MLATemplateHKSD
                 Dim myQuery = New QueryWorksheet
                 Dim username = e.userName
                 If e.blanktemplate Then
-                   
+
                     sqlstr = String.Format("with tx as (select * from crosstab('" &
                            " with ka as (select distinct kam.username,mc.mla,mc.cardname,trim(mc.mla) || '' - '' || mc.cardname as assignment  from sales.sfkam kam  " &
                            " left join sales.sfkamassignment ka on ka.kam = kam.username  	left join sales.sfmlacardname mc on mc.id = ka.mlacardnameid where kam.username = ''{0}'' " &
@@ -70,10 +70,10 @@ Public Class MLATemplateHKSD
                            " where tx.txdate = ''{1:yyyy-MM-dd}'' and ka.kam = ''{0}'' ),tx as(select cmmf.cmmf,kam.recid,sa.salesforecast from cmmf " &
                            " left join kam on kam.id = cmmf.id  left join sa on sa.cmmf = cmmf.cmmf and sa.kam = kam.username and sa.mla = kam.mla and sa.cardname = kam.cardname 	order by cmmf,kam.mla) select * from tx;','select m from generate_series(1,{2})m') as (cmmf bigint,{3})), " &
                            " nsp as (select cmmf, nsp1,nsp2 from sales.sfcmmfnsp)" &
-                           " select sales.get_producttype(productlinegpsid,brand) as producttype ,c.brand,c.productlinegps,c.reference,to_char(c.familyid,'FM000') || ' - ' || f.familyname || ' - ' || f.familylv2 as familyname,c.cmmf,c.description ,n.nsp1 as ""NSP(USD)"",n.nsp2 as ""NSP(HKD)"" ,{4} " &
+                           " select sales.get_producttype(productlinegpsid,brand) as producttype ,c.brand,c.productlinegps,c.reference,to_char(c.familyid,'FM000') || ' - ' || f.familyname || ' - ' || f.familylv2 as familyname,c.cmmf,c.description ,n.nsp1 as ""NSP(USD)"",n.nsp2 as ""NSP(HKD)"" ,{4},null::text,null::text,c.launchingmonth,c.remarks " &
                            " from sales.sfcmmf c left join tx on tx.cmmf = c.cmmf left join nsp n on n.cmmf = c.cmmf left join sales.sffamily f on f.familyid = c.familyid  where to_char(activedate,'YYYYMM')::int <= to_char('{1:yyyy-MM-dd}'::date,'YYYYMM')::int  order by producttype,c.brand,c.reference ", username, myPeriodRange(i), myKAMAssignmentList.Count, fieldList.ToString, txfieldlist.ToString)
                 Else
-                   
+
                     sqlstr = String.Format("with tx as (select * from crosstab('" &
                             " with ka as (select distinct kam.username,mc.mla,mc.cardname,trim(mc.mla) || '' - '' || mc.cardname as assignment  from sales.sfkam kam  " &
                             " left join sales.sfkamassignment ka on ka.kam = kam.username  	left join sales.sfmlacardname mc on mc.id = ka.mlacardnameid where kam.username = ''{0}'' " &
@@ -85,7 +85,7 @@ Public Class MLATemplateHKSD
                             " where tx.txdate = ''{1:yyyy-MM-dd}'' and ka.kam = ''{0}'' ),tx as(select cmmf.cmmf,kam.recid,sa.salesforecast from cmmf " &
                             " left join kam on kam.id = cmmf.id  left join sa on sa.cmmf = cmmf.cmmf and sa.kam = kam.username and sa.mla = kam.mla and sa.cardname = kam.cardname 	order by cmmf,kam.mla) select * from tx;','select m from generate_series(1,{2})m') as (cmmf bigint,{3})), " &
                             " nsp as (select cmmf, nsp1,nsp2 from sales.sfcmmfnsp )" &
-                            " select sales.get_producttype(productlinegpsid,brand) as producttype ,c.brand,c.productlinegps,c.reference,to_char(c.familyid,'FM000') || ' - ' || f.familyname || ' - ' || f.familylv2 as familyname,c.cmmf,c.description ,n.nsp1 as ""NSP(USD)"",n.nsp2 as ""NSP(HKD)"" ,{4} " &
+                            " select sales.get_producttype(productlinegpsid,brand) as producttype ,c.brand,c.productlinegps,c.reference,to_char(c.familyid,'FM000') || ' - ' || f.familyname || ' - ' || f.familylv2 as familyname,c.cmmf,c.description ,n.nsp1 as ""NSP(USD)"",n.nsp2 as ""NSP(HKD)"" ,{4},null::text,null::text,c.launchingmonth,c.remarks " &
                             " from sales.sfcmmf c left join tx on tx.cmmf = c.cmmf left join nsp n on n.cmmf = c.cmmf left join sales.sffamily f on f.familyid = c.familyid where to_char(activedate,'YYYYMM')::int <= to_char('{1:yyyy-MM-dd}'::date,'YYYYMM')::int  order by producttype,c.brand,c.reference  ", username, myPeriodRange(i), myKAMAssignmentList.Count, fieldList.ToString, txfieldlist.ToString)
                 End If
 
@@ -332,7 +332,7 @@ Public Class MLATemplateHKSD
         'osheet.Cells(10, 7).font.size = 14
         'osheet.Columns(1).EntireColumn.Hidden = True
         osheet.Columns(3).EntireColumn.Hidden = True
-        osheet.Columns(5).EntireColumn.Hidden = True
+        'osheet.Columns(5).EntireColumn.Hidden = True
         osheet.Columns(8).EntireColumn.Hidden = True
         osheet.Columns(9).EntireColumn.Hidden = True
         osheet.Rows("13:16").EntireRow.Hidden = True

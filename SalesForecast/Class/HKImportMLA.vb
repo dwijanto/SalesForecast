@@ -106,9 +106,12 @@ Public Class HKImportMLA
             Dim myperiod As Date = myList(i).Period
             Dim mycol As Integer
             'For j = 0 To myList(i).myrecord.Count - 1 ' - HKReportProperty1.ColumnStartData
-            Dim mylastrecord = myList(i).myrecord.Count - 6
+            'Dim mylastrecord = myList(i).myrecord.Count - 6
+            'Dim mylastrecord = myList(i).myrecord.Count - 6
             'For j = 0 To (myList(i).myrecord.Count - 1) - (HKReportProperty1.ColumnStartData - 1) ' - HKReportProperty1.ColumnStartData
-            For j = 0 To mylastrecord - (HKReportProperty1.ColumnStartData) ' - HKReportProperty1.ColumnStartData
+            'For j = 0 To mylastrecord - (HKReportProperty1.ColumnStartData) ' - HKReportProperty1.ColumnStartData
+
+            For j = 0 To kamDict.Count - 1 ' - HKReportProperty1.ColumnStartData
                 'If mycol < (myList(i).myrecord.Count - 1) - (HKReportProperty1.ColumnStartData - 1) Then
                 mycol = (HKReportProperty1.ColumnStartData - 1) + j
                 If myList(i).myrecord(mycol) <> "" Then

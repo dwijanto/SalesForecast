@@ -100,6 +100,42 @@ Namespace My
                 Return CType(Me("PostgreSQLCon"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("host=hon17-0099L;port=5433;database=LogisticDb;CommandTimeout=1000;TimeOut=1000;")>  _
+        Public Property conDev2() As String
+            Get
+                Return CType(Me("conDev2"),String)
+            End Get
+            Set
+                Me("conDev2") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ODBC;DSN=PostgreSQLhon14nt;")>  _
+        Public Property oExConLive() As String
+            Get
+                Return CType(Me("oExConLive"),String)
+            End Get
+            Set
+                Me("oExConLive") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ODBC;DSN=PostgreSQLhon17nt;")>  _
+        Public Property oExConDev() As String
+            Get
+                Return CType(Me("oExConDev"),String)
+            End Get
+            Set
+                Me("oExConDev") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -135,7 +135,6 @@
     End Sub
 
     Private Sub FormMenu_Load(sender As Object, e As EventArgs) Handles Me.Load
-
         username = Environment.UserDomainName & "\" & Environment.UserName
         Dim mydata = myuser.findByUserName(username.ToLower)
         If mydata.Tables(0).rows.count > 0 Then
