@@ -97,10 +97,14 @@ Public Class FormCMMF
 
     End Sub
 
-    Private Sub ProgressReport(ByVal id As Integer, ByVal message As String)
+    Public Sub ProgressReport(ByVal id As Integer, ByVal message As String)
         If Me.InvokeRequired Then
             Dim d As New ProgressReportDelegate(AddressOf ProgressReport)
-            Me.Invoke(d, New Object() {id, message})
+            Try
+                Me.Invoke(d, New Object() {id, message})
+            Catch ex As Exception
+
+            End Try
         Else
             Select Case id
                 Case 1
@@ -108,9 +112,34 @@ Public Class FormCMMF
                 Case 4
                     DataGridView1.AutoGenerateColumns = False
                     DataGridView1.DataSource = myController.BS
+                Case 5
+                    ToolStripProgressBar1.Style = ProgressBarStyle.Continuous
+                Case 6
+                    ToolStripProgressBar1.Style = ProgressBarStyle.Marquee
+                Case 7
+                    MessageBox.Show(message)
             End Select
+
         End If
+
+
     End Sub
+
+
+    'Private Sub ProgressReport(ByVal id As Integer, ByVal message As String)
+    '    If Me.InvokeRequired Then
+    '        Dim d As New ProgressReportDelegate(AddressOf ProgressReport)
+    '        Me.Invoke(d, New Object() {id, message})
+    '    Else
+    '        Select Case id
+    '            Case 1
+    '                ToolStripStatusLabel1.Text = message
+    '            Case 4
+    '                DataGridView1.AutoGenerateColumns = False
+    '                DataGridView1.DataSource = myController.BS
+    '        End Select
+    '    End If
+    'End Sub
 
 
     Private Sub ToolStripTextBox1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ToolStripTextBox1.TextChanged
@@ -154,6 +183,13 @@ Public Class FormCMMF
     End Sub
 
 
+    Private Sub ToolStripButton6_Click(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
+        Dim openFileDialog1 As New OpenFileDialog
+        If openFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            Dim myImport As New ImportAVGNSPHK(Me, openFileDialog1.FileName)
+            myImport.Start()
+        End If
+    End Sub
 End Class
 
 Public Enum TxEnum

@@ -66,6 +66,7 @@ Partial Class FormMenu
         Me.ExRateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RawDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FamilyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MLASDHKToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HKALLKAMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TWALLKAMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -75,12 +76,15 @@ Partial Class FormMenu
         Me.THALLKAMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UserGuideToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MLASDHKToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
+        Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip1
         '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 107)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(643, 22)
@@ -106,109 +110,109 @@ Partial Class FormMenu
         'ExtractTemplateToolStripMenuItem
         '
         Me.ExtractTemplateToolStripMenuItem.Name = "ExtractTemplateToolStripMenuItem"
-        Me.ExtractTemplateToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExtractTemplateToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExtractTemplateToolStripMenuItem.Text = "Export MLA Template - HK"
         '
         'ExtractForecastGroupTemplateToolStripMenuItem
         '
         Me.ExtractForecastGroupTemplateToolStripMenuItem.Name = "ExtractForecastGroupTemplateToolStripMenuItem"
-        Me.ExtractForecastGroupTemplateToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExtractForecastGroupTemplateToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExtractForecastGroupTemplateToolStripMenuItem.Text = "Export Forecast Group Template - HK"
         '
         'ImportTemplateToolStripMenuItem
         '
         Me.ImportTemplateToolStripMenuItem.Name = "ImportTemplateToolStripMenuItem"
-        Me.ImportTemplateToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ImportTemplateToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ImportTemplateToolStripMenuItem.Text = "Import Sales Forecast HK"
         '
         'ExportAPOToolStripMenuItem
         '
         Me.ExportAPOToolStripMenuItem.Name = "ExportAPOToolStripMenuItem"
-        Me.ExportAPOToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportAPOToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExportAPOToolStripMenuItem.Text = "Export APO HK"
         '
         'ExportAPOHKPriceToolStripMenuItem
         '
         Me.ExportAPOHKPriceToolStripMenuItem.Name = "ExportAPOHKPriceToolStripMenuItem"
-        Me.ExportAPOHKPriceToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportAPOHKPriceToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExportAPOHKPriceToolStripMenuItem.Text = "Export APO Price HK"
         '
         'ExportForecastGroupTWToolStripMenuItem
         '
         Me.ExportForecastGroupTWToolStripMenuItem.Name = "ExportForecastGroupTWToolStripMenuItem"
-        Me.ExportForecastGroupTWToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportForecastGroupTWToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExportForecastGroupTWToolStripMenuItem.Text = "Export Forecast Group Template - TW"
         '
         'ImportSalesForecastTWToolStripMenuItem
         '
         Me.ImportSalesForecastTWToolStripMenuItem.Name = "ImportSalesForecastTWToolStripMenuItem"
-        Me.ImportSalesForecastTWToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ImportSalesForecastTWToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ImportSalesForecastTWToolStripMenuItem.Text = "Import Sales Forecast TW"
         '
         'ExportAPOTWToolStripMenuItem
         '
         Me.ExportAPOTWToolStripMenuItem.Name = "ExportAPOTWToolStripMenuItem"
-        Me.ExportAPOTWToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportAPOTWToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExportAPOTWToolStripMenuItem.Text = "Export APO TW"
         '
         'ExportMSTemplateToolStripMenuItem
         '
         Me.ExportMSTemplateToolStripMenuItem.Name = "ExportMSTemplateToolStripMenuItem"
-        Me.ExportMSTemplateToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportMSTemplateToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExportMSTemplateToolStripMenuItem.Text = "Export MY Template"
         '
         'ImportSalesForecastMSToolStripMenuItem
         '
         Me.ImportSalesForecastMSToolStripMenuItem.Name = "ImportSalesForecastMSToolStripMenuItem"
-        Me.ImportSalesForecastMSToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ImportSalesForecastMSToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ImportSalesForecastMSToolStripMenuItem.Text = "Import Sales Forecast MY"
         '
         'ImportFromRAWDATAMYToolStripMenuItem
         '
         Me.ImportFromRAWDATAMYToolStripMenuItem.Name = "ImportFromRAWDATAMYToolStripMenuItem"
-        Me.ImportFromRAWDATAMYToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ImportFromRAWDATAMYToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ImportFromRAWDATAMYToolStripMenuItem.Text = "Import From RAWDATA MY"
         '
         'ExportAPOMSToolStripMenuItem
         '
         Me.ExportAPOMSToolStripMenuItem.Name = "ExportAPOMSToolStripMenuItem"
-        Me.ExportAPOMSToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportAPOMSToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExportAPOMSToolStripMenuItem.Text = "Export APO MY"
         '
         'ExportSGTemplateToolStripMenuItem
         '
         Me.ExportSGTemplateToolStripMenuItem.Name = "ExportSGTemplateToolStripMenuItem"
-        Me.ExportSGTemplateToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportSGTemplateToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExportSGTemplateToolStripMenuItem.Text = "Export SG Template"
         '
         'ImportSalesForecastSGToolStripMenuItem
         '
         Me.ImportSalesForecastSGToolStripMenuItem.Name = "ImportSalesForecastSGToolStripMenuItem"
-        Me.ImportSalesForecastSGToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ImportSalesForecastSGToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ImportSalesForecastSGToolStripMenuItem.Text = "Import Sales Forecast SG"
         '
         'ExportAPOSGToolStripMenuItem
         '
         Me.ExportAPOSGToolStripMenuItem.Name = "ExportAPOSGToolStripMenuItem"
-        Me.ExportAPOSGToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportAPOSGToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExportAPOSGToolStripMenuItem.Text = "Export APO SG"
         '
         'ExportTHTemplateToolStripMenuItem
         '
         Me.ExportTHTemplateToolStripMenuItem.Name = "ExportTHTemplateToolStripMenuItem"
-        Me.ExportTHTemplateToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportTHTemplateToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExportTHTemplateToolStripMenuItem.Text = "Export TH Template"
         '
         'ImportSalesForecastTHToolStripMenuItem
         '
         Me.ImportSalesForecastTHToolStripMenuItem.Name = "ImportSalesForecastTHToolStripMenuItem"
-        Me.ImportSalesForecastTHToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ImportSalesForecastTHToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ImportSalesForecastTHToolStripMenuItem.Text = "Import Sales Forecast TH"
         '
         'ExportAPOTHToolStripMenuItem
         '
         Me.ExportAPOTHToolStripMenuItem.Name = "ExportAPOTHToolStripMenuItem"
-        Me.ExportAPOTHToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ExportAPOTHToolStripMenuItem.Size = New System.Drawing.Size(271, 22)
         Me.ExportAPOTHToolStripMenuItem.Text = "Export APO TH"
         '
         'FileToolStripMenuItem
@@ -222,20 +226,20 @@ Partial Class FormMenu
         'MyCMMFToolStripMenuItem
         '
         Me.MyCMMFToolStripMenuItem.Name = "MyCMMFToolStripMenuItem"
-        Me.MyCMMFToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.MyCMMFToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.MyCMMFToolStripMenuItem.Text = "My CMMF"
         '
         'ToolsToolStripMenuItem
         '
         Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
         Me.ToolsToolStripMenuItem.Text = "Tools"
         '
         'UserToolStripMenuItem
         '
         Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
-        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(97, 22)
         Me.UserToolStripMenuItem.Text = "User"
         '
         'MasterToolStripMenuItem
@@ -249,7 +253,7 @@ Partial Class FormMenu
         '
         Me.CMMFToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMMFHKToolStripMenuItem1, Me.CMMFTWToolStripMenuItem, Me.CMMFMYToolStripMenuItem, Me.CMMFSGToolStripMenuItem, Me.CMMFTHToolStripMenuItem})
         Me.CMMFToolStripMenuItem.Name = "CMMFToolStripMenuItem"
-        Me.CMMFToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.CMMFToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
         Me.CMMFToolStripMenuItem.Text = "CMMF"
         '
         'CMMFHKToolStripMenuItem1
@@ -285,14 +289,14 @@ Partial Class FormMenu
         'MLAToolStripMenuItem
         '
         Me.MLAToolStripMenuItem.Name = "MLAToolStripMenuItem"
-        Me.MLAToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.MLAToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
         Me.MLAToolStripMenuItem.Text = "MLA"
         '
         'KAMToolStripMenuItem
         '
         Me.KAMToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MasterKAMToolStripMenuItem, Me.KAMTargetToolStripMenuItem, Me.KAMTargetTWToolStripMenuItem, Me.KAMBudgetMSToolStripMenuItem})
         Me.KAMToolStripMenuItem.Name = "KAMToolStripMenuItem"
-        Me.KAMToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.KAMToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
         Me.KAMToolStripMenuItem.Text = "KAM"
         '
         'MasterKAMToolStripMenuItem
@@ -322,38 +326,44 @@ Partial Class FormMenu
         'SalesDeductionToolStripMenuItem
         '
         Me.SalesDeductionToolStripMenuItem.Name = "SalesDeductionToolStripMenuItem"
-        Me.SalesDeductionToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.SalesDeductionToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
         Me.SalesDeductionToolStripMenuItem.Text = "Sales Deduction TW"
         '
         'GrossSalesTWToolStripMenuItem
         '
         Me.GrossSalesTWToolStripMenuItem.Name = "GrossSalesTWToolStripMenuItem"
-        Me.GrossSalesTWToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.GrossSalesTWToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
         Me.GrossSalesTWToolStripMenuItem.Text = "Gross Sales TW"
         '
         'GrossSalesBudgetTWToolStripMenuItem
         '
         Me.GrossSalesBudgetTWToolStripMenuItem.Name = "GrossSalesBudgetTWToolStripMenuItem"
-        Me.GrossSalesBudgetTWToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.GrossSalesBudgetTWToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
         Me.GrossSalesBudgetTWToolStripMenuItem.Text = "Gross Sales Budget/Target TW"
         '
         'ExRateToolStripMenuItem
         '
         Me.ExRateToolStripMenuItem.Name = "ExRateToolStripMenuItem"
-        Me.ExRateToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.ExRateToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
         Me.ExRateToolStripMenuItem.Text = "ExRate TW"
         '
         'RawDataToolStripMenuItem
         '
         Me.RawDataToolStripMenuItem.Name = "RawDataToolStripMenuItem"
-        Me.RawDataToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.RawDataToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
         Me.RawDataToolStripMenuItem.Text = "Raw Data"
         '
         'FamilyToolStripMenuItem
         '
         Me.FamilyToolStripMenuItem.Name = "FamilyToolStripMenuItem"
-        Me.FamilyToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.FamilyToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
         Me.FamilyToolStripMenuItem.Text = "Family"
+        '
+        'MLASDHKToolStripMenuItem
+        '
+        Me.MLASDHKToolStripMenuItem.Name = "MLASDHKToolStripMenuItem"
+        Me.MLASDHKToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
+        Me.MLASDHKToolStripMenuItem.Text = "MLA SD HK"
         '
         'RToolStripMenuItem
         '
@@ -365,37 +375,37 @@ Partial Class FormMenu
         'HKALLKAMToolStripMenuItem
         '
         Me.HKALLKAMToolStripMenuItem.Name = "HKALLKAMToolStripMenuItem"
-        Me.HKALLKAMToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.HKALLKAMToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.HKALLKAMToolStripMenuItem.Text = "HK ALL KAM"
         '
         'TWALLKAMToolStripMenuItem
         '
         Me.TWALLKAMToolStripMenuItem.Name = "TWALLKAMToolStripMenuItem"
-        Me.TWALLKAMToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.TWALLKAMToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.TWALLKAMToolStripMenuItem.Text = "TW ALL KAM"
         '
         'MYALLKAMToolStripMenuItem
         '
         Me.MYALLKAMToolStripMenuItem.Name = "MYALLKAMToolStripMenuItem"
-        Me.MYALLKAMToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.MYALLKAMToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.MYALLKAMToolStripMenuItem.Text = "MY ALL KAM"
         '
         'SGALLKAMToolStripMenuItem
         '
         Me.SGALLKAMToolStripMenuItem.Name = "SGALLKAMToolStripMenuItem"
-        Me.SGALLKAMToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.SGALLKAMToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.SGALLKAMToolStripMenuItem.Text = "SG ALL KAM"
         '
         'HKALLKAMTARGETToolStripMenuItem
         '
         Me.HKALLKAMTARGETToolStripMenuItem.Name = "HKALLKAMTARGETToolStripMenuItem"
-        Me.HKALLKAMTARGETToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.HKALLKAMTARGETToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.HKALLKAMTARGETToolStripMenuItem.Text = "HK ALL KAM - TARGET"
         '
         'THALLKAMToolStripMenuItem
         '
         Me.THALLKAMToolStripMenuItem.Name = "THALLKAMToolStripMenuItem"
-        Me.THALLKAMToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.THALLKAMToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.THALLKAMToolStripMenuItem.Text = "TH ALL KAM"
         '
         'HelpToolStripMenuItem
@@ -411,11 +421,17 @@ Partial Class FormMenu
         Me.UserGuideToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.UserGuideToolStripMenuItem.Text = "User Guide"
         '
-        'MLASDHKToolStripMenuItem
+        'ToolStripStatusLabel1
         '
-        Me.MLASDHKToolStripMenuItem.Name = "MLASDHKToolStripMenuItem"
-        Me.MLASDHKToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
-        Me.MLASDHKToolStripMenuItem.Text = "MLA SD HK"
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(526, 17)
+        Me.ToolStripStatusLabel1.Spring = True
+        Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'ToolStripProgressBar1
+        '
+        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
+        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(100, 16)
         '
         'FormMenu
         '
@@ -426,6 +442,8 @@ Partial Class FormMenu
         Me.Controls.Add(Me.MenuStrip1)
         Me.Name = "FormMenu"
         Me.Text = "Sales Forecast"
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -486,5 +504,7 @@ Partial Class FormMenu
     Friend WithEvents FamilyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExportAPOHKPriceToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MLASDHKToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ToolStripProgressBar1 As System.Windows.Forms.ToolStripProgressBar
 
 End Class

@@ -62,9 +62,12 @@ Public Class DialogCMMF
         Dim cbdrv7 As DataRowView = ComboBox7.SelectedItem
         If Not IsNothing(cbdrv7) Then
             DRV.Item("catbrandname") = cbdrv7.Row.Item("catbrandname")
-            If DRV.Item("catbrandid") = 0 Then
-                DRV.Item("catbrandid") = DBNull.Value
-                DRV.Item("catbrandname") = String.Empty
+
+            If Not IsDBNull(DRV.Item("catbrandid")) Then
+                If DRV.Item("catbrandid") = 0 Then
+                    DRV.Item("catbrandid") = DBNull.Value
+                    DRV.Item("catbrandname") = String.Empty
+                End If
             End If
         End If
 

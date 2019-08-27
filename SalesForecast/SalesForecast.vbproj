@@ -81,6 +81,7 @@
     <Compile Include="Class\ActiveRecord.vb" />
     <Compile Include="Class\HKImportGroup.vb" />
     <Compile Include="Class\HKImportMLA.vb" />
+    <Compile Include="Class\ImportAVGNSPHK.vb" />
     <Compile Include="Class\ImportKAMTarget.vb" />
     <Compile Include="Class\ImportSalesForecastHK.vb" />
     <Compile Include="Class\MSImportGroup.vb" />
