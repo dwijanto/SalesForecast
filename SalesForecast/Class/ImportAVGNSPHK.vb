@@ -66,9 +66,9 @@ Public Class ImportAVGNSPHK
                     Else
                         If sb.Length > 0 Then
                             Dim sqlstr1 = String.Format("delete from sales.sfcmmfnsp;")
-                            PostgresqlDBAdapter1.ExecuteNonQuery(sqlstr1)
+                            'PostgresqlDBAdapter1.ExecuteNonQuery(sqlstr1)
                             'copy
-                            Dim sqlstr As String = "copy sales.sfcmmfnsp(cmmf,nsp1,nsp2) from stdin with null as 'Null';"
+                            Dim sqlstr As String = String.Format("{0};copy sales.sfcmmfnsp(cmmf,nsp1,nsp2) from stdin with null as 'Null';", sqlstr1)
                             Dim myret As Boolean
                             Dim ErrMessage = PostgresqlDBAdapter1.copy(sqlstr, sb.ToString, myret)
                             sw.Stop()
