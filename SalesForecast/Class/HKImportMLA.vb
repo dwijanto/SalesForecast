@@ -102,6 +102,7 @@ Public Class HKImportMLA
             End Using
         Next
         'buid Row
+        myForm.ProgressReport(1, "Build Data...")
         For i = 0 To myList.Count - 1
             Dim myperiod As Date = myList(i).Period
             Dim mycol As Integer
@@ -205,6 +206,7 @@ Public Class HKImportMLA
         Next
 
         If DATASB.Length > 0 Then
+            myForm.ProgressReport(1, "Preparing Data...")
             Dim NextYear = String.Format("{0}-{1:MM}-01", myPeriod.Year + 1, myPeriod)
             'clean data for KAM
             'Dim sqlstr1 = String.Format("delete from sales.sfmlatxhk tx where id in(select tx.id from  sales.sfmlatxhk tx" &
@@ -215,6 +217,7 @@ Public Class HKImportMLA
             PostgresqlDBAdapter1.ExecuteNonQuery(sqlstr1)
 
             'copy
+            myForm.ProgressReport(1, "Copy Data...")
             Dim sqlstr As String = "copy sales.sfmlatxhk(txdate,cmmfkamassignmentid,cmmf,mla,kam,customer,salesforecast) from stdin with null as 'Null';"
             ErrorMsg = PostgresqlDBAdapter1.copy(sqlstr, DATASB.ToString, myret)
             If myret Then

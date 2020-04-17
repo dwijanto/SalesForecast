@@ -21,8 +21,11 @@ Public Class ALLKAMHK
 
             Dim mycallback As FormatReportDelegate = AddressOf FormattingReport
             Dim PivotCallback As FormatReportDelegate = AddressOf PivotTable
-            Dim criteria1 As String = String.Format("where tx.txdate >= '{0:yyyy-MM-}01' and tx.txdate <= '{1:yyyy-MM-}01' and tx.salesforecast > 0 ", e.startperiod, e.startperiod.AddMonths(5))
-            Dim criteria2 As String = String.Format("where tx.txdate >= '{0:yyyy-MM-}01' and tx.txdate <= '{1:yyyy-MM-}01' and tx.salesforecast > 0 ", e.startperiod.AddMonths(6), e.endperiod)
+            'Dim criteria1 As String = String.Format("where tx.txdate >= '{0:yyyy-MM-}01' and tx.txdate <= '{1:yyyy-MM-}01' and tx.salesforecast > 0 ", e.startperiod, e.startperiod.AddMonths(5))
+            'Dim criteria2 As String = String.Format("where tx.txdate >= '{0:yyyy-MM-}01' and tx.txdate <= '{1:yyyy-MM-}01' and tx.salesforecast > 0 ", e.startperiod.AddMonths(6), e.endperiod)
+
+            Dim criteria1 As String = String.Format("where tx.txdate >= '{0:yyyy-MM-}01' and tx.txdate <= '{1:yyyy-MM-}01' ", e.startperiod, e.startperiod.AddMonths(5))
+            Dim criteria2 As String = String.Format("where tx.txdate >= '{0:yyyy-MM-}01' and tx.txdate <= '{1:yyyy-MM-}01' ", e.startperiod.AddMonths(6), e.endperiod)
 
             'sqlstr = String.Format("(select c.*,sales.get_producttype(c.productlinegpsid,c.brand) as producttype,tx.txdate,tx.kam,tx.mla as entity,tx.salesforecast,nsp.nsp1,nsp.nsp2,tx.salesforecast * nsp.nsp1 as grosssalesusd,tx.salesforecast * nsp.nsp2 as grosssaleshkd from sales.sfmlatxhk tx" &
             '         " left join sales.sfcmmfnsp nsp on nsp.cmmf = tx.cmmf" &

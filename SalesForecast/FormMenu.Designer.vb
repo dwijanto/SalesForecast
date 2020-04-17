@@ -23,6 +23,8 @@ Partial Class FormMenu
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ActionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExtractTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -45,8 +47,6 @@ Partial Class FormMenu
         Me.ExportAPOTHToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MyCMMFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CMMFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CMMFHKToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -67,6 +67,8 @@ Partial Class FormMenu
         Me.RawDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FamilyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MLASDHKToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HKALLKAMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TWALLKAMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -76,8 +78,6 @@ Partial Class FormMenu
         Me.THALLKAMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UserGuideToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -91,9 +91,21 @@ Partial Class FormMenu
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(526, 17)
+        Me.ToolStripStatusLabel1.Spring = True
+        Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'ToolStripProgressBar1
+        '
+        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
+        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(100, 16)
+        '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ActionToolStripMenuItem, Me.FileToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.MasterToolStripMenuItem, Me.RToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ActionToolStripMenuItem, Me.FileToolStripMenuItem, Me.MasterToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.RToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(643, 24)
@@ -229,19 +241,6 @@ Partial Class FormMenu
         Me.MyCMMFToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.MyCMMFToolStripMenuItem.Text = "My CMMF"
         '
-        'ToolsToolStripMenuItem
-        '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserToolStripMenuItem})
-        Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
-        Me.ToolsToolStripMenuItem.Text = "Tools"
-        '
-        'UserToolStripMenuItem
-        '
-        Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
-        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(97, 22)
-        Me.UserToolStripMenuItem.Text = "User"
-        '
         'MasterToolStripMenuItem
         '
         Me.MasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMMFToolStripMenuItem, Me.MLAToolStripMenuItem, Me.KAMToolStripMenuItem, Me.SalesDeductionToolStripMenuItem, Me.GrossSalesTWToolStripMenuItem, Me.GrossSalesBudgetTWToolStripMenuItem, Me.ExRateToolStripMenuItem, Me.RawDataToolStripMenuItem, Me.FamilyToolStripMenuItem, Me.MLASDHKToolStripMenuItem})
@@ -259,31 +258,31 @@ Partial Class FormMenu
         'CMMFHKToolStripMenuItem1
         '
         Me.CMMFHKToolStripMenuItem1.Name = "CMMFHKToolStripMenuItem1"
-        Me.CMMFHKToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.CMMFHKToolStripMenuItem1.Size = New System.Drawing.Size(131, 22)
         Me.CMMFHKToolStripMenuItem1.Text = "CMMF HK"
         '
         'CMMFTWToolStripMenuItem
         '
         Me.CMMFTWToolStripMenuItem.Name = "CMMFTWToolStripMenuItem"
-        Me.CMMFTWToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CMMFTWToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.CMMFTWToolStripMenuItem.Text = "CMMF TW"
         '
         'CMMFMYToolStripMenuItem
         '
         Me.CMMFMYToolStripMenuItem.Name = "CMMFMYToolStripMenuItem"
-        Me.CMMFMYToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CMMFMYToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.CMMFMYToolStripMenuItem.Text = "CMMF MY"
         '
         'CMMFSGToolStripMenuItem
         '
         Me.CMMFSGToolStripMenuItem.Name = "CMMFSGToolStripMenuItem"
-        Me.CMMFSGToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CMMFSGToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.CMMFSGToolStripMenuItem.Text = "CMMF SG"
         '
         'CMMFTHToolStripMenuItem
         '
         Me.CMMFTHToolStripMenuItem.Name = "CMMFTHToolStripMenuItem"
-        Me.CMMFTHToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CMMFTHToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.CMMFTHToolStripMenuItem.Text = "CMMF TH"
         '
         'MLAToolStripMenuItem
@@ -365,6 +364,19 @@ Partial Class FormMenu
         Me.MLASDHKToolStripMenuItem.Size = New System.Drawing.Size(232, 22)
         Me.MLASDHKToolStripMenuItem.Text = "MLA SD HK"
         '
+        'ToolsToolStripMenuItem
+        '
+        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserToolStripMenuItem})
+        Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
+        Me.ToolsToolStripMenuItem.Text = "Tools"
+        '
+        'UserToolStripMenuItem
+        '
+        Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
+        Me.UserToolStripMenuItem.Size = New System.Drawing.Size(97, 22)
+        Me.UserToolStripMenuItem.Text = "User"
+        '
         'RToolStripMenuItem
         '
         Me.RToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HKALLKAMToolStripMenuItem, Me.TWALLKAMToolStripMenuItem, Me.MYALLKAMToolStripMenuItem, Me.SGALLKAMToolStripMenuItem, Me.HKALLKAMTARGETToolStripMenuItem, Me.THALLKAMToolStripMenuItem})
@@ -420,18 +432,6 @@ Partial Class FormMenu
         Me.UserGuideToolStripMenuItem.Name = "UserGuideToolStripMenuItem"
         Me.UserGuideToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.UserGuideToolStripMenuItem.Text = "User Guide"
-        '
-        'ToolStripStatusLabel1
-        '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(526, 17)
-        Me.ToolStripStatusLabel1.Spring = True
-        Me.ToolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'ToolStripProgressBar1
-        '
-        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
-        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(100, 16)
         '
         'FormMenu
         '

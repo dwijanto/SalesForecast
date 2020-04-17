@@ -190,6 +190,14 @@ Public Class FormCMMF
             myImport.Start()
         End If
     End Sub
+
+    Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
+        Dim openFileDialog1 As New OpenFileDialog
+        If openFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            Dim myImport As New ImportMlaNspMonthly(Me, openFileDialog1.FileName)
+            myImport.Start()
+        End If
+    End Sub
 End Class
 
 Public Enum TxEnum

@@ -94,7 +94,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("host=localhost;port=5433;database=LogisticDb;CommandTimeout=1000;TimeOut=1000;")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("host=localhost;port=5433;database=LogisticDb20200406;CommandTimeout=10000;TimeOut"& _ 
+            "=1000;")>  _
         Public ReadOnly Property PostgreSQLCon() As String
             Get
                 Return CType(Me("PostgreSQLCon"),String)
@@ -139,13 +140,26 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("host=localhost;port=5433;database=LogisticDb;CommandTimeout=1000;TimeOut=1000;")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("host=localhost;port=5433;database=LogisticDb20200406;CommandTimeout=0;TimeOut=100"& _ 
+            "0;")>  _
         Public Property conLocal() As String
             Get
                 Return CType(Me("conLocal"),String)
             End Get
             Set
                 Me("conLocal") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ODBC;DSN=PostgreSQLLocal;")>  _
+        Public Property oExConLocal() As String
+            Get
+                Return CType(Me("oExConLocal"),String)
+            End Get
+            Set
+                Me("oExConLocal") = value
             End Set
         End Property
     End Class
