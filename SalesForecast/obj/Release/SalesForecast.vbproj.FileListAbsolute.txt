@@ -142,3 +142,4 @@ C:\Users\dlie\Documents\GitHub\SalesForecast\SalesForecast\obj\Release\SalesFore
 C:\Users\dlie\Documents\GitHub\SalesForecast\SalesForecast\obj\Release\SalesForecast.vbproj.GenerateResource.Cache
 C:\Users\dlie\Documents\GitHub\SalesForecast\SalesForecast\obj\Release\SalesForecast.FormHKAPOPrice.resources
 C:\Users\dlie\Documents\GitHub\SalesForecast\SalesForecast\obj\Release\SalesForecast.FormMLACardNameSD.resources
+C:\Users\dlie\Documents\GitHub\SalesForecast\SalesForecast\obj\Release\SalesForecast.FormImportRawdataHK.resources

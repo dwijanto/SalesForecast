@@ -56,8 +56,8 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("host=localhost;port=5432;database=LogisticDb20150120;CommandTimeout=1000;TimeOut="& _ 
-            "1000;")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("host=localhost;port=5433;database=LogisticDb20200406;CommandTimeout=10000;TimeOut"& _ 
+            "=1000;")>  _
         Public Property conDev() As String
             Get
                 Return CType(Me("conDev"),String)
@@ -81,7 +81,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("ODBC;DSN=PostgreSQLhon14nt;")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ODBC;DSN=PostgreSQLhon03nt;")>  _
         Public Property oExCon() As String
             Get
                 Return CType(Me("oExCon"),String)
@@ -94,8 +94,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("host=localhost;port=5433;database=LogisticDb20200406;CommandTimeout=10000;TimeOut"& _ 
-            "=1000;")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("host=hon14nt;port=5432;database=LogisticDb;CommandTimeout=1000;TimeOut=1000;")>  _
         Public ReadOnly Property PostgreSQLCon() As String
             Get
                 Return CType(Me("PostgreSQLCon"),String)
@@ -116,7 +115,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("ODBC;DSN=PostgreSQLhon14nt;")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ODBC;DSN=PostgreSQLhon03nt;")>  _
         Public Property oExConLive() As String
             Get
                 Return CType(Me("oExConLive"),String)
@@ -128,7 +127,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("ODBC;DSN=PostgreSQLhon17nt;")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ODBC;DSN=PostgreSQLhon14nt;")>  _
         Public Property oExConDev() As String
             Get
                 Return CType(Me("oExConDev"),String)

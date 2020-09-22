@@ -6,11 +6,12 @@ Public Class FormCMMF
     Dim BrandController1 As BrandController
     Dim FamilyController1 As FamilyController
     Dim ProductLineGPSController1 As ProductLineGPSController
-    Dim CMMFNSPController1 As CMMFNSPController
-
+    Dim CMMFNSPController1 As CMMFNSPController    
+    Dim PeriodMLAList As List(Of String)
     'Dim VendorController As VendorTxAdapter
     'Dim PMController As PMAdapter
-
+    Dim MLANSPFieldNameAndType As String
+    Dim MLANSPFieldName As String
     Dim drv As DataRowView = Nothing
     Dim NSPdrv As DataRowView = Nothing
 
@@ -43,19 +44,31 @@ Public Class FormCMMF
         FamilyController1 = New FamilyController
         ProductLineGPSController1 = New ProductLineGPSController
         CMMFNSPController1 = New CMMFNSPController
-
-        'VendorController = New VendorTxAdapter
-        'PMController = New PMAdapter
+        Dim MlaNspModel1 = New MlaNspModel
         Try
+
+            MLANSPFieldNameAndType = MlaNspModel1.FieldNameAndType
+            MLANSPFieldName = MlaNspModel1.FieldName
+            If MLANSPFieldName.Length > 0 Then
+                MLANSPFieldName = "," & MLANSPFieldName
+            End If
+            If MLANSPFieldNameAndType.Length = 0 Then
+                MLANSPFieldNameAndType = """nsp"" text"
+            End If
             ProgressReport(1, "Loading..")
-            If myController.loaddata() Then
+            Dim sqlstr = String.Format("with m as (select * from  crosstab('select cmmf,period::text || ''_'' ||mla as desc ,nsp1 from sales.sfmlansp order by cmmf','select  period::text || ''_'' ||mla as desc from sales.sfmlansp group by mla,period order by mla desc,period') as (cmmf text,{0}))" &
+                                       " select u.cmmf::text,u.origin,u.sbu,u.brand,u.reference,u.productdesc,u.description,u.companystatus,u.status,u.productsegmentation,u.productlinegpsid,u.familyid,u.activedate,u.launchingmonth,u.remarks,to_char(f.familyid,'FM000') || ' - ' || f.familyname as familyname,f.familylv2,sbu.productlinegpsname,p.nsp1,p.nsp2,u.catbrandid,cbv.catbrandname {1}" &
+                                       " from sales.sfcmmf u left join sales.sffamily f on f.familyid = u.familyid left join sales.sfproductlinegps sbu on sbu.productlinegpsid = u.productlinegpsid " &
+                                       " left join sales.sfcmmfnsp p on p.cmmf = u.cmmf  left join sales.catbrandview cbv on cbv.id = u.catbrandid left join m on m.cmmf::bigint = u.cmmf" &
+                                       " order by u.cmmf", MLANSPFieldNameAndType, MLANSPFieldName)
+            'If myController.loaddata() Then
+            If myController.loaddata(sqlstr) Then
                 ProgressReport(4, "Init Data")
             End If
             BrandController1.loaddata()
             FamilyController1.loaddata()
             ProductLineGPSController1.loaddata()
             CMMFNSPController1.loaddata()
-
             ProgressReport(1, "Done.")
 
         Catch ex As Exception
@@ -111,7 +124,23 @@ Public Class FormCMMF
                     ToolStripStatusLabel1.Text = message
                 Case 4
                     DataGridView1.AutoGenerateColumns = False
+
+                    If DataGridView1.Columns.Count <= 16 Then
+                        'Add New Column in DatagridView1
+                        If MLANSPFieldName.Length > 0 Then
+                            For Each mydata In MLANSPFieldName.Split(",")
+                                Dim mycolumn As New DataGridViewTextBoxColumn
+                                mycolumn.DataPropertyName = mydata.Replace("""", "")
+                                mycolumn.HeaderText = mydata.Replace("""", "")
+                                DataGridView1.Columns.Add(mycolumn)
+                            Next
+                        End If
+                       
+
+                    End If
+                   
                     DataGridView1.DataSource = myController.BS
+
                 Case 5
                     ToolStripProgressBar1.Style = ProgressBarStyle.Continuous
                 Case 6

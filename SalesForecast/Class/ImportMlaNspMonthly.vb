@@ -1,5 +1,7 @@
 ﻿Imports System.Threading
 Imports System.Text
+Imports Npgsql
+
 Public Class ImportMlaNspMonthly
     Private myForm As Object
     Private FileNameFullPath As String
@@ -43,7 +45,7 @@ Public Class ImportMlaNspMonthly
 
                     Do Until .EndOfData
                         myrecord = .ReadFields
-                        myList.Add(myrecord)                        
+                        myList.Add(myrecord)
                     Loop
 
                     For i = 2 To myList.Count - 1
@@ -59,7 +61,7 @@ Public Class ImportMlaNspMonthly
                                           mydata.period & vbTab &
                                           mydata.nsp & vbCrLf)
                             End If
-                            
+
                         Next
                     Next
 
@@ -100,4 +102,92 @@ Public Class MlaNspModel
     Public Property mla
     Public Property period
     Public Property nsp
+    Public Property ErrMessage As String = String.Empty
+    Dim PostgresqlDBAdapter1 As PostgreSQLDbAdapter = PostgreSQLDbAdapter.getInstance
+    'Dim PeriodMlaList As List(Of String)
+    Dim _FieldNameAndType As String = String.Empty
+    Dim _FieldName As String = String.Empty
+    Dim _MlaList As List(Of String) = New List(Of String)
+
+    Public ReadOnly Property FieldNameAndType As String
+        Get
+            If _FieldNameAndType.Length = 0 Then
+                GetPeriodMla()
+            End If
+            Return _FieldNameAndType
+        End Get
+    End Property
+    Public ReadOnly Property FieldName As String
+        Get
+            If _FieldName.Length = 0 Then
+                GetPeriodMla()
+            End If
+            Return _FieldName
+        End Get
+    End Property
+
+    Public ReadOnly Property MlaList As List(Of String)
+        Get
+            If _MlaList.Count = 0 Then
+                GetMLAList()
+            End If
+            Return _MlaList
+        End Get
+    End Property
+
+
+    Public Function GetPeriodMla() As Boolean
+        Dim myret As Boolean = False
+        Dim DS As New DataSet
+        Try
+            Dim dataadapter As NpgsqlDataAdapter = PostgresqlDBAdapter1.getDbDataAdapter
+            Using conn As Object = PostgresqlDBAdapter1.getConnection
+                conn.Open()
+                Dim sqlstr = String.Format("select period::text || '_' || mla::text as periodmla from sales.sfmlansp" &
+                                           " group by mla,period order by mla desc,period")
+                dataadapter.SelectCommand = PostgresqlDBAdapter1.getCommandObject(sqlstr, conn)
+                dataadapter.SelectCommand.CommandType = CommandType.Text
+                dataadapter.Fill(DS)
+                Dim FieldNameAndTypeSB As New StringBuilder
+                Dim FieldNameSB As New StringBuilder
+                For Each dr As DataRow In DS.Tables(0).Rows
+                    If FieldNameAndTypeSB.Length > 0 Then
+                        FieldNameAndTypeSB.Append(",")
+                        FieldNameSB.Append(",")
+                    End If
+                    FieldNameAndTypeSB.Append(String.Format("""{0}"" Numeric", dr.Item(0)))
+                    FieldNameSB.Append(String.Format("""{0}""", dr.Item(0)))
+                Next
+                _FieldNameAndType = FieldNameAndTypeSB.ToString
+                _FieldName = FieldNameSB.ToString
+                myret = True
+            End Using
+        Catch ex As Exception
+            ErrMessage = ex.Message
+        End Try
+        Return myret
+    End Function
+
+    Public Function GetMLAList() As List(Of String)
+        Dim DS As New DataSet
+        Try
+            Dim dataadapter As NpgsqlDataAdapter = PostgresqlDBAdapter1.getDbDataAdapter
+            Using conn As Object = PostgresqlDBAdapter1.getConnection
+                conn.Open()
+                Dim sqlstr = String.Format("select distinct mla from sales.sfmlansp order by mla;")
+                dataadapter.SelectCommand = PostgresqlDBAdapter1.getCommandObject(sqlstr, conn)
+                dataadapter.SelectCommand.CommandType = CommandType.Text
+                dataadapter.Fill(DS)
+                Dim FieldNameAndTypeSB As New StringBuilder
+                Dim FieldNameSB As New StringBuilder
+                For Each dr As DataRow In DS.Tables(0).Rows
+                    _MlaList.Add(dr.Item(0))
+                Next
+            End Using
+        Catch ex As Exception
+            ErrMessage = ex.Message
+        End Try
+        Return _MlaList
+    End Function
+
 End Class

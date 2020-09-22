@@ -3,29 +3,29 @@
   <Profiles />
   <Settings>
     <Setting Name="conDev" Type="System.String" Scope="User">
-      <Value Profile="(Default)">host=localhost;port=5432;database=LogisticDb20150120;CommandTimeout=1000;TimeOut=1000;</Value>
+      <Value Profile="(Default)">host=localhost;port=5433;database=LogisticDb20200406;CommandTimeout=10000;TimeOut=1000;</Value>
     </Setting>
     <Setting Name="conLive" Type="System.String" Scope="User">
       <Value Profile="(Default)">host=hon14nt;port=5432;database=LogisticDb;CommandTimeout=1000;TimeOut=1000;</Value>
     </Setting>
     <Setting Name="oExCon" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ODBC;DSN=PostgreSQLhon14nt;</Value>
+      <Value Profile="(Default)">ODBC;DSN=PostgreSQLhon03nt;</Value>
     </Setting>
     <Setting Name="PostgreSQLCon" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;host=localhost;port=5433;database=LogisticDb20200406;CommandTimeout=10000;TimeOut=1000;&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;host=hon14nt;port=5432;database=LogisticDb;CommandTimeout=1000;TimeOut=1000;&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">host=localhost;port=5433;database=LogisticDb20200406;CommandTimeout=10000;TimeOut=1000;</Value>
+      <Value Profile="(Default)">host=hon14nt;port=5432;database=LogisticDb;CommandTimeout=1000;TimeOut=1000;</Value>
     </Setting>
     <Setting Name="conDev2" Type="System.String" Scope="User">
       <Value Profile="(Default)">host=hon17-0099L;port=5433;database=LogisticDb;CommandTimeout=1000;TimeOut=1000;</Value>
     </Setting>
     <Setting Name="oExConLive" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ODBC;DSN=PostgreSQLhon14nt;</Value>
+      <Value Profile="(Default)">ODBC;DSN=PostgreSQLhon03nt;</Value>
     </Setting>
     <Setting Name="oExConDev" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ODBC;DSN=PostgreSQLhon17nt;</Value>
+      <Value Profile="(Default)">ODBC;DSN=PostgreSQLhon14nt;</Value>
     </Setting>
     <Setting Name="conLocal" Type="System.String" Scope="User">
       <Value Profile="(Default)">host=localhost;port=5433;database=LogisticDb20200406;CommandTimeout=0;TimeOut=1000;</Value>

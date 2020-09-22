@@ -80,7 +80,7 @@ Public Class APOHK
             Dim PivotCallback As FormatReportDelegate = AddressOf PivotTable
 
 
-            sqlstr = String.Format("select * from sales.get_apoprice('{0:yyyy-MM-01}')", e.startPeriod)
+            sqlstr = String.Format("select * from sales.get_apoprice('{0:yyyy-MM-01}','{1}')", e.startPeriod, e.MLA)
 
             Dim myreport As New ExportToExcelFile(myForm, sqlstr, filename, reportname, mycallback, PivotCallback, datasheet, "\templates\ExcelTemplateHK.xltx", "A2", False)
             myreport.Run(myForm, e)
@@ -105,5 +105,6 @@ Public Class APOHKEventArgs
     Inherits EventArgs
 
     Public Property startPeriod As Date
+    Public Property MLA As String
 
 End Class

@@ -113,6 +113,7 @@ Partial Class FormMLATemplateHK
         Me.CheckBox1.TabIndex = 6
         Me.CheckBox1.Text = "Blank Template"
         Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.CheckBox1.Visible = False
         '
         'FormMLATemplateHK
         '

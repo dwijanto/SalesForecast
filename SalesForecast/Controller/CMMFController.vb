@@ -37,6 +37,21 @@
 
     End Function
 
+    Public Function loaddata(ByVal sqlstr) As Boolean
+        Dim myret As Boolean = False
+        Model = New CMMFModel
+        DS = New DataSet
+        If Model.LoadData(sqlstr, DS) Then
+            Dim pk(0) As DataColumn
+            pk(0) = DS.Tables(0).Columns("cmmf")
+            DS.Tables(0).PrimaryKey = pk
+            BS = New BindingSource
+            BS.DataSource = DS.Tables(0)
+            myret = True
+        End If
+        Return myret
+    End Function
+
     Public Function save() As Boolean Implements IController.save
         Dim myret As Boolean = False
         BS.EndEdit()

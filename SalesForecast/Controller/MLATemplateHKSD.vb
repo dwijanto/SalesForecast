@@ -74,6 +74,19 @@ Public Class MLATemplateHKSD
                            " from sales.sfcmmf c left join tx on tx.cmmf = c.cmmf left join nsp n on n.cmmf = c.cmmf left join sales.sffamily f on f.familyid = c.familyid  where to_char(activedate,'YYYYMM')::int <= to_char('{1:yyyy-MM-dd}'::date,'YYYYMM')::int  order by producttype,c.brand,c.reference ", username, myPeriodRange(i), myKAMAssignmentList.Count, fieldList.ToString, txfieldlist.ToString)
                 Else
 
+                    'sqlstr = String.Format("with tx as (select * from crosstab('" &
+                    '        " with ka as (select distinct kam.username,mc.mla,mc.cardname,trim(mc.mla) || '' - '' || mc.cardname as assignment  from sales.sfkam kam  " &
+                    '        " left join sales.sfkamassignment ka on ka.kam = kam.username  	left join sales.sfmlacardname mc on mc.id = ka.mlacardnameid where kam.username = ''{0}'' " &
+                    '        " order by mc.mla) , kam as (select 1 as id,row_number() over (order by ka.mla,ka.cardname) as recid,* from ka), " &
+                    '        " cmmf as(select  1 as id,* from sales.sfcmmf cmmf order by cmmf), " &
+                    '        " sa as (select tx.txdate,tx.salesforecast,tx.cmmfkamassignmentid,cka.cmmf,ka.kam,mc.mla,mc.cardname from sales.sfmlatxhk tx " &
+                    '        " left join sales.sfcmmfkamassignment cka on cka.id = tx.cmmfkamassignmentid" &
+                    '        " left join sales.sfkamassignment ka on ka.id = cka.kamassignmentid left join sales.sfmlacardname mc on mc.id = ka.mlacardnameid " &
+                    '        " where tx.txdate = ''{1:yyyy-MM-dd}'' and ka.kam = ''{0}'' ),tx as(select cmmf.cmmf,kam.recid,sa.salesforecast from cmmf " &
+                    '        " left join kam on kam.id = cmmf.id  left join sa on sa.cmmf = cmmf.cmmf and sa.kam = kam.username and sa.mla = kam.mla and sa.cardname = kam.cardname 	order by cmmf,kam.mla) select * from tx;','select m from generate_series(1,{2})m') as (cmmf bigint,{3})), " &
+                    '        " nsp as (select cmmf, nsp1,nsp2 from sales.sfcmmfnsp )" &
+                    '        " select sales.get_producttype(productlinegpsid,brand) as producttype ,c.brand,c.productlinegps,c.reference,to_char(c.familyid,'FM000') || ' - ' || f.familyname || ' - ' || f.familylv2 as familyname,c.cmmf,c.description ,n.nsp1 as ""NSP(USD)"",n.nsp2 as ""NSP(HKD)"" ,{4},null::text,null::text,c.launchingmonth,c.remarks " &
+                    '        " from sales.sfcmmf c left join tx on tx.cmmf = c.cmmf left join nsp n on n.cmmf = c.cmmf left join sales.sffamily f on f.familyid = c.familyid where to_char(activedate,'YYYYMM')::int <= to_char('{1:yyyy-MM-dd}'::date,'YYYYMM')::int  order by producttype,c.brand,c.reference  ", username, myPeriodRange(i), myKAMAssignmentList.Count, fieldList.ToString, txfieldlist.ToString)
                     sqlstr = String.Format("with tx as (select * from crosstab('" &
                             " with ka as (select distinct kam.username,mc.mla,mc.cardname,trim(mc.mla) || '' - '' || mc.cardname as assignment  from sales.sfkam kam  " &
                             " left join sales.sfkamassignment ka on ka.kam = kam.username  	left join sales.sfmlacardname mc on mc.id = ka.mlacardnameid where kam.username = ''{0}'' " &
@@ -83,10 +96,15 @@ Public Class MLATemplateHKSD
                             " left join sales.sfcmmfkamassignment cka on cka.id = tx.cmmfkamassignmentid" &
                             " left join sales.sfkamassignment ka on ka.id = cka.kamassignmentid left join sales.sfmlacardname mc on mc.id = ka.mlacardnameid " &
                             " where tx.txdate = ''{1:yyyy-MM-dd}'' and ka.kam = ''{0}'' ),tx as(select cmmf.cmmf,kam.recid,sa.salesforecast from cmmf " &
-                            " left join kam on kam.id = cmmf.id  left join sa on sa.cmmf = cmmf.cmmf and sa.kam = kam.username and sa.mla = kam.mla and sa.cardname = kam.cardname 	order by cmmf,kam.mla) select * from tx;','select m from generate_series(1,{2})m') as (cmmf bigint,{3})), " &
-                            " nsp as (select cmmf, nsp1,nsp2 from sales.sfcmmfnsp )" &
-                            " select sales.get_producttype(productlinegpsid,brand) as producttype ,c.brand,c.productlinegps,c.reference,to_char(c.familyid,'FM000') || ' - ' || f.familyname || ' - ' || f.familylv2 as familyname,c.cmmf,c.description ,n.nsp1 as ""NSP(USD)"",n.nsp2 as ""NSP(HKD)"" ,{4},null::text,null::text,c.launchingmonth,c.remarks " &
-                            " from sales.sfcmmf c left join tx on tx.cmmf = c.cmmf left join nsp n on n.cmmf = c.cmmf left join sales.sffamily f on f.familyid = c.familyid where to_char(activedate,'YYYYMM')::int <= to_char('{1:yyyy-MM-dd}'::date,'YYYYMM')::int  order by producttype,c.brand,c.reference  ", username, myPeriodRange(i), myKAMAssignmentList.Count, fieldList.ToString, txfieldlist.ToString)
+                            " left join kam on kam.id = cmmf.id  left join sa on sa.cmmf = cmmf.cmmf and sa.kam = kam.username and sa.mla = kam.mla and sa.cardname = kam.cardname 	order by cmmf,kam.mla) select * from tx;','select m from generate_series(1,{2})m') as (cmmf bigint,{3})) " &
+                            " select sales.get_producttype(productlinegpsid,brand) as producttype ,c.brand,c.productlinegps,c.reference,to_char(c.familyid,'FM000') || ' - ' || f.familyname || ' - ' || f.familylv2 as familyname,c.cmmf,c.description ,n.nsp1 as ""NSP(Fortress)"",d.nsp1 as ""NSP(Default)"" ,{4},null::text,null::text,c.launchingmonth,c.remarks " &
+                            " from sales.sfcmmf c " &
+                            " left join tx on tx.cmmf = c.cmmf " &
+                            " left join sales.sffamily f on f.familyid = c.familyid" &
+                            " left join sales.sfmlansp n on n.cmmf = tx.cmmf and n.mla = 'W9000332' and n.period =  to_char('{1:yyyy-MM-dd}'::date,'yyyyMM')::integer" &
+                            " left join sales.sfmlansp d on d.cmmf = tx.cmmf and d.mla ='Default' and d.period =  to_char('{1:yyyy-MM-dd}'::date,'yyyyMM')::integer" &
+                            " where to_char(activedate,'YYYYMM')::int <= to_char('{1:yyyy-MM-dd}'::date,'YYYYMM')::int  order by producttype,c.brand,c.reference  ",
+                            username, myPeriodRange(i), myKAMAssignmentList.Count, fieldList.ToString, txfieldlist.ToString)
                 End If
 
 
@@ -161,30 +179,57 @@ Public Class MLATemplateHKSD
             osheet.Cells(12, DataStart + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent3
             osheet.Cells(12, DataStart + i).Interior.TintAndShade = 0.399975585192419
 
+            ''SubTotal Net
+            'osheet.Cells(6, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(R{2}C{0}:R{1}C{0},R{2}C:R{1}C)", 9, e.lastRow, RowStartData + 1)
+            'osheet.Cells(6, 10 + i).font.bold = True
+            'osheet.Cells(6, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
+            'osheet.Cells(6, 10 + i).Interior.TintAndShade = 0.399975585192419
+
+            ''Net SDA
+            'osheet.Cells(1, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""SDA""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
+            'osheet.Cells(1, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
+            'osheet.Cells(1, 10 + i).Interior.TintAndShade = 0.599993896298105
+            ''Net SDA WMF
+            'osheet.Cells(2, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""SDA - WMF""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
+            'osheet.Cells(2, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
+            'osheet.Cells(2, 10 + i).Interior.TintAndShade = 0.599993896298105
+            ''Net CKW TEFAL
+            'osheet.Cells(3, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - Tefal""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
+            'osheet.Cells(3, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
+            'osheet.Cells(3, 10 + i).Interior.TintAndShade = 0.599993896298105
+            ''Net CKW LAGO
+            'osheet.Cells(4, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - Lago""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
+            'osheet.Cells(4, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
+            'osheet.Cells(4, 10 + i).Interior.TintAndShade = 0.599993896298105
+            ''Net CKW WMF
+            'osheet.Cells(5, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - WMF""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
+            'osheet.Cells(5, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
+            'osheet.Cells(5, 10 + i).Interior.TintAndShade = 0.599993896298105
+
             'SubTotal Net
-            osheet.Cells(6, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(R{2}C{0}:R{1}C{0},R{2}C:R{1}C)", 9, e.lastRow, RowStartData + 1)
+            osheet.Cells(6, 10 + i).FormulaR1C1 = String.Format("=sum(R[-5]C:R[-1]C)")
             osheet.Cells(6, 10 + i).font.bold = True
             osheet.Cells(6, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(6, 10 + i).Interior.TintAndShade = 0.399975585192419
 
             'Net SDA
-            osheet.Cells(1, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""SDA""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
+            osheet.Cells(1, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""SDA""),if(R18C=""W9000332"",R{3}C{4}:R{0}C{4},R{3}C{1}:R{0}C{1}),R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1, 8)
             osheet.Cells(1, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(1, 10 + i).Interior.TintAndShade = 0.599993896298105
             'Net SDA WMF
-            osheet.Cells(2, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""SDA - WMF""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
+            osheet.Cells(2, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""SDA - WMF""),if(R18C=""W9000332"",R{3}C{4}:R{0}C{4},R{3}C{1}:R{0}C{1}),R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1, 8)
             osheet.Cells(2, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(2, 10 + i).Interior.TintAndShade = 0.599993896298105
             'Net CKW TEFAL
-            osheet.Cells(3, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - Tefal""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
+            osheet.Cells(3, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - Tefal""),if(R18C=""W9000332"",R{3}C{4}:R{0}C{4},R{3}C{1}:R{0}C{1}),R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1, 8)
             osheet.Cells(3, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(3, 10 + i).Interior.TintAndShade = 0.599993896298105
             'Net CKW LAGO
-            osheet.Cells(4, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - Lago""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
+            osheet.Cells(4, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - Lago""),if(R18C=""W9000332"",R{3}C{4}:R{0}C{4},R{3}C{1}:R{0}C{1}),R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1, 8)
             osheet.Cells(4, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(4, 10 + i).Interior.TintAndShade = 0.599993896298105
             'Net CKW WMF
-            osheet.Cells(5, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - WMF""),R{3}C{1}:R{0}C{1},R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1)
+            osheet.Cells(5, 10 + i).FormulaR1C1 = String.Format("=SUMPRODUCT(--(R{3}C{2}:R{0}C{2}=""CKW - WMF""),if(R18C=""W9000332"",R{3}C{4}:R{0}C{4},R{3}C{1}:R{0}C{1}),R{3}C:R{0}C)", e.lastRow, 9, 1, RowStartData + 1, 8)
             osheet.Cells(5, 10 + i).Interior.ThemeColor = Excel.XlThemeColor.xlThemeColorAccent5
             osheet.Cells(5, 10 + i).Interior.TintAndShade = 0.599993896298105
         Next

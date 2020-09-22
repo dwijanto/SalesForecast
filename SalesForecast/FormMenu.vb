@@ -108,6 +108,8 @@
         GrossSalesTWToolStripMenuItem.Visible = User.can("View Gross Sales TW")
         GrossSalesBudgetTWToolStripMenuItem.Visible = User.can("View Gross Sales Target TW")
         ExRateToolStripMenuItem.Visible = User.can("View Ex Rate TW")
+        ExRateHKToolStripMenuItem.Visible = User.can("View Ex Rate HK")
+
         RawDataToolStripMenuItem.Visible = User.can("View Rawdata HK")
         ExportMSTemplateToolStripMenuItem.Visible = User.can("View MS Template")
         ImportSalesForecastMSToolStripMenuItem.Visible = User.can("View Import MS")
@@ -120,11 +122,12 @@
         KAMBudgetMSToolStripMenuItem.Visible = User.can("View Budget KAM MS")
         HKALLKAMTARGETToolStripMenuItem.Visible = User.can("View Report ALL HK TARGET")
 
-
+        ImportFromRawdataHKToolstripMenuItem.Visible = User.can("View Report ALL HK")
 
         ExportTHTemplateToolStripMenuItem.Visible = User.can("View TH Template")
         ImportSalesForecastTHToolStripMenuItem.Visible = User.can("View Import TH")
         ExportAPOTHToolStripMenuItem.Visible = User.can("View APO TH")
+
     End Sub
 
     Private Sub disableMenuBar()
@@ -412,4 +415,13 @@
    
 
 
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ImportFromRawdataHKToolstripMenuItem.Click
+        Dim myform = New FormImportRawdataHK
+        myform.ShowDialog()
+    End Sub
+
+    Private Sub ExRateHKToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExRateHKToolStripMenuItem.Click
+        Dim myform = New DialogTBParamDetail(country.HK)
+        myform.ShowDialog()
+    End Sub
 End Class

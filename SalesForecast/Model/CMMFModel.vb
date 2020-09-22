@@ -39,6 +39,19 @@ Public Class CMMFModel
         Return myret
     End Function
 
+    Public Function LoadData(ByVal sqlstr As String, ByVal DS As DataSet) As Boolean
+        Dim dataadapter As NpgsqlDataAdapter = myadapter.getDbDataAdapter
+        Dim myret As Boolean = False
+        Using conn As Object = myadapter.getConnection
+            conn.Open()
+            dataadapter.SelectCommand = myadapter.getCommandObject(sqlstr, conn)
+            dataadapter.SelectCommand.CommandType = CommandType.Text
+            dataadapter.Fill(DS, TableName)
+            myret = True
+        End Using
+        Return myret
+    End Function
+
     Public Function save(ByVal obj As Object, ByVal mye As ContentBaseEventArgs) As Boolean Implements IModel.save
         Dim dataadapter As NpgsqlDataAdapter = myadapter.getDbDataAdapter
         Dim myret As Boolean = False

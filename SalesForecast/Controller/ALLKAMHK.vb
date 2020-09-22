@@ -6,11 +6,15 @@ Public Class ALLKAMHK
     Dim myKAMAssignmentList As List(Of KAMAssignmentModel)
     Dim HKReportProperty1 As HKReportProperty = HKReportProperty.getInstance
 
+    Dim TBParamDetailController1 As New TBParamDetailController
+    Dim ExRate As Decimal
+
     Public Sub Generate(myForm As Object, e As ALLKAMEventArgs)
         Dim sqlstr As String = String.Empty
 
         Dim mysaveform As New SaveFileDialog
         mysaveform.FileName = String.Format("SalesForecastALL{0:yyyyMMdd}.xlsx", Date.Today)
+        ExRate = TBParamDetailController1.Model.getCurrency(country.HK, "EX-Rate")
 
         If (mysaveform.ShowDialog() = Windows.Forms.DialogResult.OK) Then
             Dim filename = IO.Path.GetDirectoryName(mysaveform.FileName)
@@ -60,22 +64,39 @@ Public Class ALLKAMHK
             '       " left join sales.sfcmmfnsp nsp on nsp.cmmf = c.cmmf" &
             '       " left join sales.sfproductlinegps gps on gps.productlinegpsid = c.productlinegpsid" &
             '       " left join sales.sffamily f on f.familyid = c.familyid {1} )", criteria1, criteria2)
-            sqlstr = String.Format("(select c.cmmf,c.origin,c.brand,c.reference,c.description,c.productsegmentation,gps.productlinegpsname as sbu,to_char(f.familyid,'FM000') as familyid,f.familyname,f.familylv2,f.productlinedesc,c.activedate,sales.get_producttype(c.productlinegpsid,c.brand) as producttype,tx.txdate,ka.kam,tx.mla as entity,mc.cardname as customer,tx.salesforecast,nsp.nsp1,nsp.nsp2,tx.salesforecast * nsp.nsp1 as netsalesusd,tx.salesforecast * nsp.nsp2 as netsaleshkd,tx.cmmfkamassignmentid from sales.sfcmmf c" &
+            'sqlstr = String.Format("(select c.cmmf,c.origin,c.brand,c.reference,c.description,c.productsegmentation,gps.productlinegpsname as sbu,to_char(f.familyid,'FM000') as familyid,f.familyname,f.familylv2,f.productlinedesc,c.activedate,sales.get_producttype(c.productlinegpsid,c.brand) as producttype,tx.txdate,ka.kam,tx.mla as entity,mc.cardname as customer,tx.salesforecast,nsp.nsp1,nsp.nsp2,tx.salesforecast * nsp.nsp1 as netsalesusd,tx.salesforecast * nsp.nsp2 as netsaleshkd,tx.cmmfkamassignmentid from sales.sfcmmf c" &
+            '       " left join sales.sfmlatxhk tx on c.cmmf = tx.cmmf " &
+            '       " left join sales.sfcmmfnsp nsp on nsp.cmmf = c.cmmf" &
+            '       " left join sales.sfcmmfkamassignment cka on cka.id = tx.cmmfkamassignmentid" &
+            '       " left join sales.sfkamassignment ka on ka.id = cka.kamassignmentid" &
+            '       " left join sales.sfmlacardname mc on mc.id = ka.mlacardnameid" &
+            '       " left join sales.sfproductlinegps gps on gps.productlinegpsid = c.productlinegpsid" &
+            '       " left join sales.sffamily f on f.familyid = c.familyid" &
+            '       " {0}) union all" &
+            '       " (select c.cmmf,c.origin,c.brand,c.reference,c.description,c.productsegmentation,gps.productlinegpsname as sbu,to_char(f.familyid,'FM000'),f.familyname,f.familylv2,f.productlinedesc,c.activedate,sales.get_producttype(c.productlinegpsid,c.brand) as producttype,tx.txdate,u.username::character varying as kam,tx.groupname,null::character varying as customer,tx.salesforecast,nsp.nsp1,nsp.nsp2,tx.salesforecast * nsp.nsp1 as netsalesusd,tx.salesforecast * nsp.nsp2 as netsaleshkd ,null::bigint" &
+            '       " from sales.sfcmmf c" &
+            '       " left join sales.sfgrouptxhk tx on c.cmmf = tx.cmmf " &
+            '       " left join sales._user u on u.id = tx.userid" &
+            '       " left join sales.sfcmmfnsp nsp on nsp.cmmf = c.cmmf" &
+            '       " left join sales.sfproductlinegps gps on gps.productlinegpsid = c.productlinegpsid" &
+            '       " left join sales.sffamily f on f.familyid = c.familyid {1} )", criteria1, criteria2)
+            sqlstr = String.Format("(select c.cmmf,c.origin,c.brand,c.reference,c.description,c.productsegmentation,gps.productlinegpsname as sbu,to_char(f.familyid,'FM000') as familyid,f.familyname,f.familylv2,f.productlinedesc,c.activedate,sales.get_producttype(c.productlinegpsid,c.brand) as producttype,tx.txdate,ka.kam,tx.mla as entity,mc.cardname as customer,tx.salesforecast,coalesce(n.nsp1,d.nsp1,0)/{2} as nsp1,coalesce(n.nsp1,d.nsp1,0) as nsp2,tx.salesforecast * (coalesce(n.nsp1,d.nsp1,0)/{2}) as netsalesusd,tx.salesforecast * coalesce(n.nsp1,d.nsp1,0) as netsaleshkd,tx.cmmfkamassignmentid from sales.sfcmmf c" &
                    " left join sales.sfmlatxhk tx on c.cmmf = tx.cmmf " &
-                   " left join sales.sfcmmfnsp nsp on nsp.cmmf = c.cmmf" &
                    " left join sales.sfcmmfkamassignment cka on cka.id = tx.cmmfkamassignmentid" &
                    " left join sales.sfkamassignment ka on ka.id = cka.kamassignmentid" &
                    " left join sales.sfmlacardname mc on mc.id = ka.mlacardnameid" &
                    " left join sales.sfproductlinegps gps on gps.productlinegpsid = c.productlinegpsid" &
                    " left join sales.sffamily f on f.familyid = c.familyid" &
+                   " left join sales.sfmlansp n on n.cmmf = tx.cmmf and n.mla = tx.mla and n.period =  to_char(tx.txdate,'yyyyMM')::integer" &
+                   " left join sales.sfmlansp d on d.cmmf = tx.cmmf and d.mla ='Default' and d.period =  to_char(tx.txdate,'yyyyMM')::integer" &
                    " {0}) union all" &
-                   " (select c.cmmf,c.origin,c.brand,c.reference,c.description,c.productsegmentation,gps.productlinegpsname as sbu,to_char(f.familyid,'FM000'),f.familyname,f.familylv2,f.productlinedesc,c.activedate,sales.get_producttype(c.productlinegpsid,c.brand) as producttype,tx.txdate,u.username::character varying as kam,tx.groupname,null::character varying as customer,tx.salesforecast,nsp.nsp1,nsp.nsp2,tx.salesforecast * nsp.nsp1 as netsalesusd,tx.salesforecast * nsp.nsp2 as netsaleshkd ,null::bigint" &
+                   " (select c.cmmf,c.origin,c.brand,c.reference,c.description,c.productsegmentation,gps.productlinegpsname as sbu,to_char(f.familyid,'FM000'),f.familyname,f.familylv2,f.productlinedesc,c.activedate,sales.get_producttype(c.productlinegpsid,c.brand) as producttype,tx.txdate,u.username::character varying as kam,tx.groupname,null::character varying as customer,tx.salesforecast,coalesce(d.nsp1,0)/{2} as nsp1,coalesce(d.nsp1,0) as nsp2,tx.salesforecast * (coalesce(d.nsp1,0)/{2}) as netsalesusd,tx.salesforecast * coalesce(d.nsp1,0) as netsaleshkd ,null::bigint" &
                    " from sales.sfcmmf c" &
                    " left join sales.sfgrouptxhk tx on c.cmmf = tx.cmmf " &
                    " left join sales._user u on u.id = tx.userid" &
-                   " left join sales.sfcmmfnsp nsp on nsp.cmmf = c.cmmf" &
                    " left join sales.sfproductlinegps gps on gps.productlinegpsid = c.productlinegpsid" &
-                   " left join sales.sffamily f on f.familyid = c.familyid {1} )", criteria1, criteria2)
+                   " left join sales.sfmlansp d on d.cmmf = tx.cmmf and d.mla ='Default' and d.period =  to_char(tx.txdate,'yyyyMM')::integer" &
+                   " left join sales.sffamily f on f.familyid = c.familyid {1} )", criteria1, criteria2, ExRate)
             'Dim myreport As New ExportToExcelFile(myForm, sqlstr, filename, reportname, mycallback, PivotCallback, datasheet, "\templates\HKMLATemplate.xltx", HKReportProperty1.RowStartdData)
             'Dim myreport As New ExportToExcelFile(myForm, sqlstr, filename, reportname, mycallback, PivotCallback, datasheet, "\templates\HKMLATemplate.xltx", "A14")
             Dim myreport As New ExportToExcelFile(myForm, sqlstr, filename, reportname, mycallback, PivotCallback, datasheet, "\templates\HKALLKAMTemplate01.xltx", "A14")
@@ -267,5 +288,9 @@ Public Class ALLKAMHK
         oSheet.PivotTables("PivotTable1").PivotFields(" Sum Total Gross ").NumberFormat = "_(* #,##0_);_(* (#,##0);_(* ""-""_);_(@_)"
 
         oSheet.Cells.EntireColumn.AutoFit()
+    End Sub
+
+    Public Sub New()
+
     End Sub
 End Class

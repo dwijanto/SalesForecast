@@ -182,6 +182,7 @@
     <Compile Include="Controller\GroupController.vb" />
     <Compile Include="Controller\GroupSDController.vb" />
     <Compile Include="Controller\HKParamController.vb" />
+    <Compile Include="Controller\ImportHKRawData.vb" />
     <Compile Include="Controller\ImportMSRAWDATA.vb" />
     <Compile Include="Controller\KAMAssignmentController.vb" />
     <Compile Include="Controller\KAMBudgetController.vb" />
@@ -464,6 +465,12 @@
     <Compile Include="View\FormHKImport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="View\FormImportRawdataHK.Designer.vb">
+      <DependentUpon>FormImportRawdataHK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormImportRawdataHK.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\FormImportRAWDATAMS.Designer.vb">
       <DependentUpon>FormImportRAWDATAMS.vb</DependentUpon>
     </Compile>
@@ -727,6 +734,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormHKImport.resx">
       <DependentUpon>FormHKImport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormImportRawdataHK.resx">
+      <DependentUpon>FormImportRawdataHK.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormImportRAWDATAMS.resx">
       <DependentUpon>FormImportRAWDATAMS.vb</DependentUpon>
